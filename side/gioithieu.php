@@ -1,6 +1,4 @@
-<div class="banner">
-        <img src="./public/images/banner1.jpg" width="1200px" id="banner_image">
-    </div>
+<?php include 'banner.php'; ?>
     
     <div class="gioithieu--content">
         <h1 class="the_h1">GIỚI THIỆU</h1>
