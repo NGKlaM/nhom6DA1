@@ -1,3 +1,3 @@
-<?php include_once './side/header.php' ?>
-<?php include './side/index.php' ?>
-<?php include_once './side/footer.php' ?>
+<?php include_once './view/header.php' ?>
+<?php include './view/index.php' ?>
+<?php include_once './view/footer.php' ?>

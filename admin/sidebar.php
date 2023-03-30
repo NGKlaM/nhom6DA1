@@ -6,13 +6,13 @@
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
-				<a href="admin.html">
+				<a href="index.php?url=sanpham">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Quản Lý Sản Phẩm</span>
 				</a>
 			</li>
 			<li>
-				<a href="admindanhmuc.html">
+				<a href="index.php?url=danhmuc">
 					<i class='bx bxs-food-menu'></i>
 					<span class="text">Quản Lý Danh Mục Sản Phẩm</span>
 				</a>
