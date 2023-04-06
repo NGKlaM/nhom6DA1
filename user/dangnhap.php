@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
-    <link rel="stylesheet" href="../public/css/dangnhap.css">
-    <link rel="icon" type="image/x-icon" href="../public/images/logo.jpg">
+    <link rel="stylesheet" href="../../public/css/dangnhap.css">
+    <link rel="icon" type="image/x-icon" href="../../public/images/logo.jpg">
 </head>
-<body>
+<body> -->
     <section>
         <div class="img-bg">
-            <img src="../public/images/sign.jpg" alt="Hình Ảnh Minh Họa">
+            <img src="public/images/sign.jpg" alt="Hình Ảnh Minh Họa">
         </div>
         <div class="noi-dung">
             <div class="form">
@@ -32,12 +32,12 @@
                         <input type="submit" value="Đăng Nhập">
                     </div>
                     <div class="input-form">
-                        <p>Bạn Chưa Có Tài Khoản? <a href="./dangky.php">Đăng Ký</a></p>
+                        <p>Bạn Chưa Có Tài Khoản? <a href="./index.php?action=dangki">Đăng Ký</a></p>
                     </div>
                 </form>
                 
             </div>
         </div>
     </section>
-</body>
-</html>
+<!-- </body>
+</html> -->

@@ -1,4 +1,3 @@
-<?php include 'banner.php'; ?>
     
     <div class="gioithieu--content">
         <h1 class="the_h1">GIỚI THIỆU</h1>

@@ -21,16 +21,14 @@
             </div>
             <div class="footer--content-box3">
                 <h3>HỖ TRỢ THANH TOÁN</h3><br>
-                <img src="./public/images/payments.png" alt="">
-                <img src="./public/images/post1.png" alt=""><br>
-                <img src="./public/images/dathongbao.png" alt="" width="170px">
+                <img src="../public/images/payments.png" alt="">
+                <img src="../public/images/post1.png" alt=""><br>
+                <img src="../public/images/dathongbao.png" alt="" width="170px">
             </div>
         </div>
     </footer>
 
    
-    <script src="public/js/app.js">
-        
-    </script>
+    
 </body>
 </html>
