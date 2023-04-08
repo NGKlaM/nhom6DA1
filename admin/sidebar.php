@@ -6,7 +6,7 @@
 	</a>
 	<ul class="side-menu top">
 		<li class="active">
-			<a href="index.php?action=sanpham">
+			<a href="index.php?action=sanpham" >
 				<i class='bx bxs-dashboard'></i>
 				<span class="text">Quản Lý Sản Phẩm</span>
 			</a>

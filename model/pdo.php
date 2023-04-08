@@ -3,7 +3,7 @@
     function pdo_execute($sql)
     {
         $sql_args = array_slice(func_get_args(), 1);
-        //Hàm array_slice () trong php là một hàm trả về một mảng đảo ngược với mảng ban đầu.
+        
         //func_get_args(): lấy mảng tất cả các tham số được truyền vào hàm.
         try {
             $conn = pdo_get_connection();

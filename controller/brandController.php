@@ -1,6 +1,6 @@
 <?php
-include '../model/brand.php';
-
+include_once '../model/brand.php';
+include_once '../model/product.php';
 function indexbrand()
 {
     $brands = getAllbrands();
@@ -16,10 +16,14 @@ function createbrand()
 
         $brand_name = $_POST['brand_name'];
         create_brand($brand_name);
-        $mes = "Thêm thành công";
+        echo "<script>alert('Thêm thành công!')</script>";
     }
 }
-function deletebrand($id_brand){
-    delete_brand($id_brand);
-    indexbrand();
+function deletebrand(){
+    if(isset($_GET['id_brand'])&&$_GET['id_brand']){
+        delete_productbyIdbrand($_GET['id_brand']);
+        delete_brand($_GET['id_brand']);
+        indexbrand();
+        echo "<script>alert('Đã xóa thành công!')</script>";
+    }
 }

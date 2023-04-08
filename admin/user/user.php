@@ -1,24 +1,3 @@
-<!-- CONTENT -->
-<section id="content">
-        <!-- NAVBAR -->
-        <nav>
-			<a href="#" class="nav-link">Hello ...</a>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell' ></i>
-				<span class="num">8</span>
-			</a>
-			<a href="#" class="profile">
-                <img src="../public/images/people.png">
-            </a>
-		</nav>
-        <!-- NAVBAR -->
 
 		<!-- MAIN -->
 		<main>
@@ -94,51 +73,6 @@
 									<button type="button" class="btn btn-primary status process" data-toggle="modal" data-target="#xoa-user">Xóa</button>
 									
 								</td>
-
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>
-									ngocdeptrai123
-								</td>
-								<td>
-									ngoc@gmail.com
-								</td>
-								<td>0399999999</td>
-								<td>Hồ Tùng Mậu, Hà Nội</td>
-								<td>User</td>
-								<td><button type="button" class="btn btn-primary status pending" data-toggle="modal" data-target="#sua-user">Sửa</button>
-									<button type="button" class="btn btn-primary status process" data-toggle="modal" data-target="#xoa-user">Xóa</button></td>
-
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>
-									ngocdeptrai123
-								</td>
-								<td>
-									ngoc@gmail.com
-								</td>
-								<td>0399999999</td>
-								<td>Hồ Tùng Mậu, Hà Nội</td>
-								<td>User</td>
-								<td><button type="button" class="btn btn-primary status pending" data-toggle="modal" data-target="#sua-user">Sửa</button>
-									<button type="button" class="btn btn-primary status process" data-toggle="modal" data-target="#xoa-user">Xóa</button></td>
-
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>
-									ngocdeptrai123
-								</td>
-								<td>
-									ngoc@gmail.com
-								</td>
-								<td>0399999999</td>
-								<td>Hồ Tùng Mậu, Hà Nội</td>
-								<td>User</td>
-								<td><button type="button" class="btn btn-primary status pending" data-toggle="modal" data-target="#sua-user">Sửa</button>
-									<button type="button" class="btn btn-primary status process" data-toggle="modal" data-target="#xoa-user">Xóa</button></td>
 
 							</tr>
 						</tbody>

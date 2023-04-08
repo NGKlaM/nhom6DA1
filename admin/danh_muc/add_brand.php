@@ -1,5 +1,4 @@
 <?php
-createbrand();
 ?>
 <form method="POST">
     <div class="modal-dialog" role="document">
@@ -17,12 +16,12 @@ createbrand();
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="./index.php?action=danhmuc"class="btn btn-secondary" data-dismiss="modal">Return</a>
                 <!-- <input type="submit" value="Add" class="btn btn-primary" name="btn_brand_create"> -->
                 <button type="submit" class="btn btn-primary" name="btn_brand_create">Add</button>
 
             </div>
         </div><span><?=isset($mes)?$mes:''?></span>
     </div>
-    
+
 </form>
