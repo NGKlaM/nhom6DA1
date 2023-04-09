@@ -66,5 +66,5 @@
 //         # code...
 //         break;
 // }
-header('location: user/');
+header('location: users/');
 ?>

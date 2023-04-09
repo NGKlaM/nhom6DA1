@@ -1,5 +1,5 @@
 <?php
-    require_once '../model/database.php';
+    require_once 'pdo.php';
 function check_login($ma_kh, $pass)
 {
     $sql = "select *from user where user_name = ? and password = ?";
@@ -18,6 +18,12 @@ function user_insert($user_name,$image,$email,$phone,$address,$password,$role)
     $sql = "insert into user(user_name,image,email,phone_number,address,password,role) value(?,?,?,?,?,?,?)";
     pdo_execute($sql, $user_name, $image, $email, $phone, $address, $password, $role);
 }
+function register($user_name, $image, $email, $phone, $password)
+{
+    $sql = "insert into user(user_name,image,email,phone_number,password) value(?,?,?,?,?)";
+    pdo_execute($sql, $user_name, $image, $email, $phone, $password);
+}
+
 function user_update($user_name, $image,$email,$phone_number,$address,$password,$role,$user_id)
 {
     $sql = "update user set user_name = ?, image =?, email = ?,phone_number=?,address=?,password=?,role=? where user_id = ?";

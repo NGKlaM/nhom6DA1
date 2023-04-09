@@ -6,6 +6,8 @@
     include_once '../model/product.php';
     include_once '../model/user.php';
     include_once '../model/brand.php';
+    include_once '../model/comment.php';
+    include_once '../model/thongke.php';
     if(isset($_GET['action'])){
         $url = $_GET['action'];
         switch($url){
@@ -176,14 +178,19 @@
                     echo "<script>alert('Đã xóa thành công!');window.location='index.php?action=user'</script>";
                 }
                 break;
-            case 'donhang':
-                include "../admin/don_hang/don_hang.php";
-                break;
             case 'comment':
+                $cmt = tk_binh_luan();
+                renderAD('binh_luan/list',['list_cmt'=>$cmt]);
+                break;
+            case 'detail_comment';
+
+                break;
+            case 'donhang':
                 include "../admin/binh_luan/binh_luan.php";
                 break;
             case 'thongke':
-                include "../admin/thong_ke/thong_ke.php";
+                $tk = tk_hang_hoa();
+                renderAD('thong_ke/list',['tks'=>$tk]);
                 break;
             default:
                 include "../view/home/dangnhap.php";

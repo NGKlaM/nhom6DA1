@@ -118,8 +118,8 @@
                              <td></td>
                              <td>
                                  <div class="checkout_btn_inner">
-                                     <a class="gray_btn" href="index.html">Tiếp tục mua sắm</a>
-                                     <a class="main_btn" href="thanhtoan.html">Thanh toán giỏ hàng</a>
+                                     <a class="gray_btn" href="index.php">Tiếp tục mua sắm</a>
+                                     <a class="main_btn" href="index.php?action=thanhtoan">Thanh toán giỏ hàng</a>
                                  </div>
                              </td>
                          </tr>

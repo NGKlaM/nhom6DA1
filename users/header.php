@@ -28,21 +28,22 @@
                     </div>
                     <div class="col-lg-5">
                         <div class="float-right">
-                            <ul class="right_side">
-                                <li>
-                                    <a href="index.php?action=lienhe">Liên Hệ</a>
-                                </li>
-                                <li>
-                                    <a href="../admin/">
-                                        Tới trang quản trị
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        tuyển dụng
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="right_side">
+                                <?php
+                                if (isset($_SESSION['user'])) :
+                                    extract($_SESSION['user']);
+                                ?>
+                                    <li><a href="#">Thông tin tài khoản</a></li>
+                                    <li><a href="#">
+                                            <?php
+                                            if ($role == 1) {
+                                                echo 'Tới trang quản trị';
+                                            }
+                                            ?>
+                                        </a></li>
+                                    <li><a href="index.php?action=logout">Đăng xuất</a></li>
+                                <?php endif ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -52,7 +53,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light w-100">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.html">
+                    <a class="navbar-brand logo_h" href="index.php">
                         <img src="../public/img/logo.jpg" style="height: 60px;" alt="" />
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,9 +96,21 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="../users/login.php" class="icons">
-                                            <i class="ti-user" aria-hidden="true"></i>
-                                        </a>
+
+                                        <?php
+                                        if (isset($_SESSION['user'])) {
+                                        ?>
+                                            <a href="#"><img class="icons" src="../public/img/user/<?= $_SESSION['user']['image'] ?>" alt="" style="width: 30px; height:30px; border-radius: 100%; margin-right: -15px;"></a>
+                                            <a href="#" class="icons"><?= $_SESSION['user']['user_name'] ?></a>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <a href="login.php" class="icons">
+                                                <i class="ti-user" aria-hidden="true"></i>
+                                            </a>
+                                        <?php
+                                        }
+                                        ?>
                                     </li>
                                 </ul>
                             </div>

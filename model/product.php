@@ -10,9 +10,22 @@
         $sql = 'select * from product where product_id = '.$id;
         return pdo_query_one($sql);
     }
+    function get_pro_by_brand($id_brand){
+        $sql = 'select * from product where brand_id = ?';
+        return pdo_query($sql,$id_brand);
+    }
     function get8productnew(){
         $sql = 'SELECT * FROM product ORDER BY create_date DESC LIMIT 8';
         return pdo_query($sql);
+    }
+    function get_3_hot_view(){
+        $sql = 'select * from product where view > 0 order by view desc limit 3';
+        return pdo_query($sql);
+    }
+    function product_update_view($ma_hh)
+    {
+        $sql = "update product set view = view + 1 where product_id = ?";
+        pdo_execute($sql, $ma_hh);
     }
     function create_product($product_name,$image,$desc,$detail,$create_date,$quantity,$price,$brand_id)
     {

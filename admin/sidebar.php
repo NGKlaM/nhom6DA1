@@ -30,13 +30,13 @@
 			</a>
 		</li>
 		<li>
-			<a href="index.php?url=admin&action=comment">
+			<a href="index.php?action=comment">
 				<i class='bx bxs-message-dots'></i>
 				<span class="text">Bình Luận</span>
 			</a>
 		</li>
 		<li>
-			<a href="index.php?url=admin&action=thongke">
+			<a href="index.php?action=thongke">
 				<i class='bx bxs-doughnut-chart'></i>
 				<span class="text">Thống Kê</span>
 			</a>

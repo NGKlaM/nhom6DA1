@@ -18,20 +18,20 @@
         <div class="noi-dung">
             <div class="form">
                 <h2>Trang Đăng Nhập</h2>
-                <form action="">
+                <form action="index.php?action=login" method="POST">
                     <div class="input-form">
                         <span>Tên Người Dùng</span>
-                        <input type="text" name="">
+                        <input type="text" name="user_name">
                     </div>
                     <div class="input-form">
                         <span>Mật Khẩu</span>
-                        <input type="password" name="">
+                        <input type="password" name="pass">
                     </div>
                     <div class="nho-dang-nhap">
                         <label><input type="checkbox" name=""> Nhớ Đăng Nhập</label>
                     </div>
                     <div class="input-form">
-                        <input type="submit" value="Đăng Nhập">
+                        <input type="submit" value="Đăng Nhập" name="login">
                     </div>
                     <div class="input-form">
                         <p>Bạn Chưa Có Tài Khoản? <a href="register.php">Đăng Ký</a></p>
