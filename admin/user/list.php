@@ -14,40 +14,21 @@
         </div>
     </div>
 
-    <ul class="box-info">
-        <li>
-            <i class='bx bxs-calendar-check'></i>
-            <span class="text">
-                <h3>1020</h3>
-                <p>Đơn Hàng</p>
-            </span>
-        </li>
-        <li>
-            <i class='bx bxs-group'></i>
-            <span class="text">
-                <h3>2834</h3>
-                <p>User</p>
-            </span>
-        </li>
-        <li>
-            <i class='bx bxs-dollar-circle'></i>
-            <span class="text">
-                <h3>$2543</h3>
-                <p>Doanh Thu</p>
-            </span>
-        </li>
-    </ul>
+
 
     <div class="table-data">
         <div class="order">
             <div class="head">
                 <h3>Danh sách user</h3>
+                <a href="index.php?action=add_user" class="btn btn-primary btn-add-sp">Thêm quản trị viên</a>
+
             </div>
+
             <table>
                 <thead>
                     <tr>
-                        <th>STT</th>
                         <th>Tên Đăng Nhập</th>
+                        <th>Hình ảnh</th>
                         <th>Email</th>
                         <th>Số Điện Thoại</th>
                         <th>Địa Chỉ</th>
@@ -57,26 +38,33 @@
                 </thead>
                 <tbody>
                     <?php
-                        foreach($user as $us){
-                            extract($us);
+                    foreach ($user as $us) {
+                        extract($us);
                     ?>
-                    <tr>
-                        <td>1</td>
-                        <td>
-                            <?=$user_name?>
-                        </td>
-                        <td>
-                            <?=$email?>
-                        </td>
-                        <td><?= $phone_number?></td>
-                        <td><?= $address?></td>
-                        <td>Admin</td>
-                        <td><button type="button" class="btn btn-primary status pending" data-toggle="modal" data-target="#sua-user">Sửa</button>
-                            <button type="button" class="btn btn-primary status process" data-toggle="modal" data-target="#xoa-user">Xóa</button>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <?= $user_name ?>
+                            </td>
+                            <td><img src="../public/img/user/<?= $image ?>" alt=""></td>
+                            <td>
+                                <?= $email ?>
+                            </td>
+                            <td><?= $phone_number ?></td>
+                            <td><?= $address ?></td>
+                            <td>
+                                <?php if ($role == 1) {
+                                    echo "<span class='badge badge-danger'>Admin</span>";
+                                } else {
+                                    echo "<span class='badge badge-success'>Thành Viên</span>";
+                                } ?>
+                            </td>
+                            <td>
+                                <a href="index.php?action=edit_user&id_user=<?= $user_id ?>" class="btn btn-primary status pending">Sửa</a>
+                                <a href="index.php?action=delete_user&id_user=<?= $user_id ?>" class="btn btn-primary status process" onclick="return confirm('bạn chắc chắn xóa chứ!');">Xóa</a>
+                            </td>
+                        </tr>
                     <?php
-                        }
+                    }
                     ?>
                 </tbody>
             </table>

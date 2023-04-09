@@ -13,6 +13,10 @@
         $sql = "insert into brand value (null,?)";
         pdo_execute($sql,$ten_loai);
     }
+    function brand_update($brand_name,$brand_id){
+        $sql = "update brand set brand_name = ? where brand_id = ?";
+        pdo_execute($sql,$brand_name,$brand_id);
+    }
 function delete_brand($ma_loai)
 {
     $sql = "delete from brand where brand_id = ?";

@@ -5,7 +5,7 @@
 		<span class="text">Admin</span>
 	</a>
 	<ul class="side-menu top">
-		<li class="active">
+		<li class="">
 			<a href="index.php?action=sanpham" >
 				<i class='bx bxs-dashboard'></i>
 				<span class="text">Quản Lý Sản Phẩm</span>
@@ -24,7 +24,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="index.php?url=admin&action=user">
+			<a href="index.php?action=user">
 				<i class='bx bxs-group'></i>
 				<span class="text">Quản Lý User</span>
 			</a>

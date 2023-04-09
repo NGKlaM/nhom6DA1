@@ -1,7 +1,9 @@
 <?php
-    updateproduct();
+    if(is_array($pro)){
+        extract($pro);
+    }
 ?>
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" action="index.php?action=updateproduct">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,6 +13,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <input type="hidden" value="<?=$product_id?>" name="id_pro">
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Tên sản phẩm:</label>
                     <input type="text" class="form-control" id="recipient-name" name="pro_name" value="<?=$product_name?>">
@@ -27,7 +30,7 @@
                     <label for="recipient-name" class="col-form-label">Loại:</label>
                     <select name="brand" id="" class="form-control">
                         <?php
-                        foreach (showbrand() as $brand) {
+                        foreach (getAllbrands() as $brand) {
                             extract($brand) ?>
                             <option value="<?= $brand_id ?>" <?=($brand_id == $pro['brand_id']?'selected':'')?>><?= $brand_name ?></option>
                         <?php } ?>
