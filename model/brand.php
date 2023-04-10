@@ -27,4 +27,14 @@ function delete_brand($ma_loai)
     } else
         pdo_execute($sql, $ma_loai);
 }
+// function load_name_brand($brand_id){
+//     if($brand_id>0){
+//     $sql = 'select * from brand where brand_id = '.$id;
+//     $dm= pdo_query_one($sql);
+//     extract($dm)
+//     return $brand_name;
+//     }else{
+//         return "";
+//     }
+// }
 ?>

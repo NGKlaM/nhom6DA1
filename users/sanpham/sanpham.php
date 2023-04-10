@@ -280,6 +280,22 @@
                                 </li>
                             </ul>
                         </div>
+                        <form action="" class="from">
+                            <input type="text" placeholder="search" name="" id="search" >
+                            <input type="button" value="Tìm Kiếm" class="button">
+                        </form>
+                        <style>
+                            .from{
+                                margin: 0 auto;
+                                display: flex;
+                                justify-content: center;
+                                gap: 10px;
+                            }
+                            .button{
+                                background-color: #CCCCCC;
+                                border-radius: 50px ;
+                            } 
+                        </style>
                     </aside>
 
 

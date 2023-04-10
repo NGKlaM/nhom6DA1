@@ -14,6 +14,19 @@
             case 'sanpham':
                 $pro = getAllproduct();
                 renderAD('san_pham/list',['listpro'=>$pro]);
+                // if(insset($_POST['search'])&&($_POST['search']!="")){
+                //     $search=$_POST['search'];
+                // }else{
+                //     $search='';
+                // }
+                // if(insset($_GET['brand_id'])&&($_GET['brand_id']!="")){
+                //     $brand_id=$_GET['brand_id'];
+                // }else{
+                //     $brand_id=0;
+                // }
+                // $dssp=getBrandId($search,$brand_id);
+                // $brand_name=load_name_brand($brand_id);
+                // include "../users/sanpham/sanpham.php";
                 break;
             case 'createproduct':
                 if (isset($_POST['btn_add_pro'])) {
