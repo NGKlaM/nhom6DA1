@@ -7,7 +7,6 @@
                     <p class="sub text-uppercase">Zipphone</p>
                     <h3> <span>Iphone </span> chính hãng<br />Bảo hành <span>trọn đời</span></h3>
                     <h4>Giảm đến 1 triệu đồng cho khách hàng thanh toán lần đầu.</h4>
-                    <a class="main_btn mt-40" href="#">Xem ngay</a>
                 </div>
             </div>
         </div>

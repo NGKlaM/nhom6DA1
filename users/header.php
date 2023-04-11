@@ -33,7 +33,7 @@
                                 if (isset($_SESSION['user'])) :
                                     extract($_SESSION['user']);
                                 ?>
-                                    <li><a href="#">
+                                    <li><a href="../admin/">
                                             <?php
                                             if ($role == 1) {
                                                 echo 'Tới trang quản trị';
