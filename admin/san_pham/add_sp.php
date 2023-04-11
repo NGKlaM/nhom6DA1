@@ -29,7 +29,7 @@
                     <label for="recipient-name" class="col-form-label">Loại:</label>
                     <select name="brand" id="" class="form-control">
                         <?php
-                        foreach (showbrand() as $brand) {
+                        foreach (getAllbrands() as $brand) {
                             extract($brand) ?>
                             <option value="<?= $brand_id ?>"><?= $brand_name ?></option>
                         <?php } ?>
@@ -54,7 +54,6 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" name="btn_add_pro" class="btn btn-primary">Add</button>
             </div>
-            <span><?=(isset($MES)&&!empty($MES))?$MES:''?></span>
         </div>
     </div>
 </form>

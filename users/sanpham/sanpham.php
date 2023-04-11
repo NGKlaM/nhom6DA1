@@ -21,235 +21,43 @@
 
                 <div class=" product_top_barlatest_product_inner">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-product">
-                                <div class="product-img">
-                                    <img class="card-img" src="img/product/inspired-product/i1.jpg" alt="" />
-                                    <div class="p_icon">
-                                        <a href="#">
-                                            <i class="ti-eye" title="Chi tiết sản phẩm"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="ti-shopping-cart" title="Thêm vào giỏ hàng"></i>
-                                        </a>
+                            <?php
+                                if(is_array($products)){
+                                    foreach($products as $product){
+                                        extract($product);
+                            ?>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single-product">
+                                    <div class="product-img">
+                                        <img class="card-img" src="../public/img/product/<?=$image?>" alt="" />
+                                        <div class="p_icon">
+                                            <a href="index.php?action=chitietsp&id_product=<?=$product_id?>">
+                                                <i class="ti-eye" title="Chi tiết sản phẩm"></i>
+                                            </a>
+                                            <a href="#">
+                                                <i class="ti-shopping-cart" title="Thêm vào giỏ hàng"></i>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="product-btm">
-                                    <a href="#" class="d-block">
-                                        <h4>Latest men’s sneaker</h4>
-                                    </a>
-                                    <div class="mt-3">
-                                        <span class="mr-4">$25.00</span>
-                                        <del>$35.00</del>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-product">
-                                <div class="product-img">
-                                    <img class="card-img" src="img/product/inspired-product/i2.jpg" alt="" />
-                                    <div class="p_icon">
-                                        <a href="#">
-                                            <i class="ti-eye" title="Chi tiết sản phẩm"></i>
+                                    <div class="product-btm">
+                                        <a href="#" class="d-block">
+                                            <h4><?=$product_name?></h4>
                                         </a>
-                                        <a href="#">
-                                            <i class="ti-shopping-cart" title="Thêm vào giỏ hàng"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-btm">
-                                    <a href="#" class="d-block">
-                                        <h4>Latest men’s sneaker</h4>
-                                    </a>
-                                    <div class="mt-3">
-                                        <span class="mr-4">$25.00</span>
-                                        <del>$35.00</del>
+                                        <div class="mt-3">
+                                            <span class="mr-4"><?=$price?></span>
+                                            <del>$35.00</del>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-product">
-                                <div class="product-img">
-                                    <img class="card-img" src="img/product/inspired-product/i3.jpg" alt="" />
-                                    <div class="p_icon">
-                                        <a href="#">
-                                            <i class="ti-eye" title="Chi tiết sản phẩm"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="ti-shopping-cart" title="Thêm vào giỏ hàng"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-btm">
-                                    <a href="#" class="d-block">
-                                        <h4>Latest men’s sneaker</h4>
-                                    </a>
-                                    <div class="mt-3">
-                                        <span class="mr-4">$25.00</span>
-                                        <del>$35.00</del>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-product">
-                                <div class="product-img">
-                                    <img class="card-img" src="img/product/inspired-product/i4.jpg" alt="" />
-                                    <div class="p_icon">
-                                        <a href="#">
-                                            <i class="ti-eye" title="Chi tiết sản phẩm"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="ti-shopping-cart" title="Thêm vào giỏ hàng"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-btm">
-                                    <a href="#" class="d-block">
-                                        <h4>Latest men’s sneaker</h4>
-                                    </a>
-                                    <div class="mt-3">
-                                        <span class="mr-4">$25.00</span>
-                                        <del>$35.00</del>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-product">
-                                <div class="product-img">
-                                    <img class="card-img" src="img/product/inspired-product/i5.jpg" alt="" />
-                                    <div class="p_icon">
-                                        <a href="#">
-                                            <i class="ti-eye" title="Chi tiết sản phẩm"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="ti-shopping-cart" title="Thêm vào giỏ hàng"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-btm">
-                                    <a href="#" class="d-block">
-                                        <h4>Latest men’s sneaker</h4>
-                                    </a>
-                                    <div class="mt-3">
-                                        <span class="mr-4">$25.00</span>
-                                        <del>$35.00</del>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-product">
-                                <div class="product-img">
-                                    <img class="card-img" src="img/product/inspired-product/i6.jpg" alt="" />
-                                    <div class="p_icon">
-                                        <a href="#">
-                                            <i class="ti-eye" title="Chi tiết sản phẩm"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="ti-shopping-cart" title="Thêm vào giỏ hàng"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-btm">
-                                    <a href="#" class="d-block">
-                                        <h4>Latest men’s sneaker</h4>
-                                    </a>
-                                    <div class="mt-3">
-                                        <span class="mr-4">$25.00</span>
-                                        <del>$35.00</del>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-product">
-                                <div class="product-img">
-                                    <img class="card-img" src="img/product/inspired-product/i7.jpg" alt="" />
-                                    <div class="p_icon">
-                                        <a href="#">
-                                            <i class="ti-eye" title="Chi tiết sản phẩm"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="ti-shopping-cart" title="Thêm vào giỏ hàng"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-btm">
-                                    <a href="#" class="d-block">
-                                        <h4>Latest men’s sneaker</h4>
-                                    </a>
-                                    <div class="mt-3">
-                                        <span class="mr-4">$25.00</span>
-                                        <del>$35.00</del>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-product">
-                                <div class="product-img">
-                                    <img class="card-img" src="img/product/inspired-product/i8.jpg" alt="" />
-                                    <div class="p_icon">
-                                        <a href="#">
-                                            <i class="ti-eye" title="Chi tiết sản phẩm"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="ti-shopping-cart" title="Thêm vào giỏ hàng"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-btm">
-                                    <a href="#" class="d-block">
-                                        <h4>Latest men’s sneaker</h4>
-                                    </a>
-                                    <div class="mt-3">
-                                        <span class="mr-4">$25.00</span>
-                                        <del>$35.00</del>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-product">
-                                <div class="product-img">
-                                    <img class="card-img" src="img/product/inspired-product/i2.jpg" alt="" />
-                                    <div class="p_icon">
-                                        <a href="#">
-                                            <i class="ti-eye" title="Chi tiết sản phẩm"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="ti-shopping-cart" title="Thêm vào giỏ hàng"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-btm">
-                                    <a href="#" class="d-block">
-                                        <h4>Latest men’s sneaker</h4>
-                                    </a>
-                                    <div class="mt-3">
-                                        <span class="mr-4">$25.00</span>
-                                        <del>$35.00</del>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <?php
+                                    }}
+                            ?>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-3">
+            <!-- <div class="col-lg-3">
                 <div class="left_sidebar_area">
                     <aside class="left_widgets p_filter_widgets">
                         <div class="l_w_title">
@@ -278,14 +86,26 @@
                                 <li>
                                     <a href="#">Realme</a>
                                 </li>
+                                <li>
+                                    <form class="form-inline">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control form-control-sm" placeholder="Search">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-success btn-sm" type="button">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </aside>
 
 
                 </div>
-            </div>
-        </div>
+            </div> -->
+        <!-- </div>
     </div>
-</section>
+</section> -->
 <!--================End Category Product Area =================-->

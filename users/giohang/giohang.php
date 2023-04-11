@@ -28,101 +28,64 @@
                          </tr>
                      </thead>
                      <tbody>
-                         <tr>
-                             <td>
-                                 <div class="media">
-                                     <div class="d-flex">
-                                         <img src="img/product/single-product/cart-1.jpg" alt="" />
-                                     </div>
-                                     <div class="media-body">
-                                         <p>Minimalistic shop for multipurpose use</p>
-                                     </div>
-                                 </div>
-                             </td>
-                             <td>
-                                 <h5>$360.00</h5>
-                             </td>
-                             <td>
-                                 <div class="product_count">
-                                     <input type="number" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty" />
+                        <?php
+                            if(!empty($_SESSION['cart'])){
+                                foreach($_SESSION['cart'] as $product_id => $product){
+                                    extract($product);
+                        ?>
 
-                                 </div>
-                             </td>
-                             <td>
-                                 <h5>$720.00</h5>
-                             </td>
-                         </tr>
-                         <tr>
-                             <td>
-                                 <div class="media">
-                                     <div class="d-flex">
-                                         <img src="img/product/single-product/cart-1.jpg" alt="" />
-                                     </div>
-                                     <div class="media-body">
-                                         <p>Minimalistic shop for multipurpose use</p>
-                                     </div>
-                                 </div>
-                             </td>
-                             <td>
-                                 <h5>$360.00</h5>
-                             </td>
-                             <td>
-                                 <div class="product_count">
-                                     <input type="number" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty" />
+                        <tr>
+                            <td>
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img src="../public/img/product/<?=$image?>" alt="" style="width: 145px;height:100px;"/>
+                                    </div>
+                                    <div class="media-body">
+                                        <p><?=$product_name?></p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <h5><?=$price?></h5>
+                            </td>
+                            <td>
+                                <div class="product_count">
+                                    <input value="<?=$quantity?>" type="number" name="qty" id="sst" maxlength="12"  title="Quantity:" class="input-text qty" />
 
-                                 </div>
-                             </td>
-                             <td>
-                                 <h5>$720.00</h5>
-                             </td>
-                         </tr>
-                         <tr>
-                             <td>
-                                 <div class="media">
-                                     <div class="d-flex">
-                                         <img src="img/product/single-product/cart-1.jpg" alt="" />
-                                     </div>
-                                     <div class="media-body">
-                                         <p>Minimalistic shop for multipurpose use</p>
-                                     </div>
-                                 </div>
-                             </td>
-                             <td>
-                                 <h5>$360.00</h5>
-                             </td>
-                             <td>
-                                 <div class="product_count">
-                                     <input type="number" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty" />
+                                </div>
+                            </td>
+                            <td>
+                                <h5><?=$price*$quantity?></h5>
+                            </td>
+                        </tr>
 
-                                 </div>
-                             </td>
-                             <td>
-                                 <h5>$720.00</h5>
-                             </td>
-                         </tr>
+                        <?php
+                                }
+                            }
+                        ?>
+                        
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <h5>Thành tiền</h5>
+                            </td>
+                            <td>
+                                <h5>$2160.00</h5>
+                            </td>
+                        </tr>
 
-                         <tr>
-                             <td></td>
-                             <td></td>
-                             <td>
-                                 <h5>Thành tiền</h5>
-                             </td>
-                             <td>
-                                 <h5>$2160.00</h5>
-                             </td>
-                         </tr>
-
-                         <tr class="out_button_area">
-                             <td></td>
-                             <td></td>
-                             <td></td>
-                             <td>
-                                 <div class="checkout_btn_inner">
-                                     <a class="gray_btn" href="index.php">Tiếp tục mua sắm</a>
-                                     <a class="main_btn" href="index.php?action=thanhtoan">Thanh toán giỏ hàng</a>
-                                 </div>
-                             </td>
-                         </tr>
+                        <tr class="out_button_area">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="checkout_btn_inner">
+                                    <a class="gray_btn" href="index.php">Tiếp tục mua sắm</a>
+                                    <a class="main_btn" href="index.php?action=thanhtoan">Thanh toán giỏ hàng</a>
+                                </div>
+                            </td>
+                        </tr>
                      </tbody>
                  </table>
              </div>

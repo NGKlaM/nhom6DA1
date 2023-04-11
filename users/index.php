@@ -7,6 +7,7 @@
     require_once '../model/cart.php';
     require_once '../model/comment.php';
     require_once '../model/product.php';
+    require_once '../controller/controller.php';
     if(isset($_GET['action'])&& ($_GET['action']!='')){
         $act = $_GET['action'];
         switch($act){
@@ -45,6 +46,40 @@
                     }
                 }
                 break;
+            
+            case 'addgiohang':
+                
+                if(!isset($_SESSION['user'])){
+                    echo '<script>alert("Đăng nhập để tiếp tục");window.location="login.php";</script>';    
+                }
+                else{
+                    if (!isset($_SESSION['cart'])) {
+                        $_SESSION['cart'] = array();
+                        $cart_id = cart_insert($_SESSION['user']['user_id']);
+                    }
+                    if(isset($_POST['add_to_cart'])){
+                        $product_id = $_POST['product_id'];
+                        $quantity = $_POST['quantity'];
+                        $date = date('Y-m-d');
+                        $cart_id = get_id_cart_by_user_id($_SESSION['user']['user_id']);
+                        if(isset($_SESSION['cart'][$product_id])){
+                            $_SESSION['cart'][$product_id]['quantity'] +=$quantity;
+                        }
+                        else{
+                            $product = getProductId($product_id);
+                            $_SESSION['cart'][$product_id] =[
+                                'product_name' => $product['product_name'],
+                                'price' => $product['price'],
+                                'image' => $product['image'],
+                                'cart_id' => $cart_id,
+                                'quantity' => $quantity
+                            ];
+                            createCartDetail($cart_id,$product_id,$quantity,$date);
+                        }
+                    }
+                }
+                include_once '../users/giohang/giohang.php';
+                break;
             case 'giohang':
                 include_once '../users/giohang/giohang.php';
                 break;
@@ -55,7 +90,22 @@
                 include_once '../users/lienhe.php';
                 break;
             case 'sanpham':
+                $brands = getAllbrands();
+                if(isset($_POST['btn-search'])){
+                    $products = product_select_keyword($_POST['key-search']);
+                }else if(isset($_GET['id_brand'])&&($_GET['id_brand'])){
+                    $products = get_pro_by_brand($_GET['id_brand']);
+                }else{
+                    $products = getAllproduct();
+                }
                 include_once '../users/sanpham/sanpham.php';
+                include_once '../users/sanpham/brand_sp.php';
+                break;
+            case 'chitietsp':
+                if(isset($_GET['id_product'])){
+                    $product = getProductId($_GET['id_product']);
+                }
+                renderUS('sanpham/sanphamct',['product'=>$product]);
                 break;
             case 'gioithieu':
                 include_once '../users/gioithieu.php';

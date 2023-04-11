@@ -1,14 +1,6 @@
 <?php
-// Bắt đầu bộ đệm đầu ra
-ob_start();
-
-// Xuất chuỗi đến bộ đệm đầu ra
-echo "Hello World!";
-
-// Lấy nội dung bộ đệm đầu ra và gán cho biến $output
-//$output = ob_get_clean();
-
-// In ra nội dung bộ đệm đầu ra đã được gán cho biến $output
-//echo $output;
-ob_end_flush();
+    include_once '../nhom6DA1/model/cart.php';
+$user_id = '5';
+$cart = cart_insert($user_id);
+echo $cart;
 ?>

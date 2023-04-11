@@ -12,7 +12,11 @@
     </div>
 </section>
 <!--================End Home Banner Area =================-->
-
+<?php
+if (is_array($product)) {
+    extract($product);
+}
+?>
 <!--================Single Product Area =================-->
 <div class="product_image_area mb-40">
     <div class="container">
@@ -22,7 +26,7 @@
                     <div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="img/product/single-product/anh2.jpg" alt="First slide" />
+                                <img class="d-block w-100" src="../public/img/product/<?= $image ?>" alt="firt" />
                             </div>
 
                         </div>
@@ -31,30 +35,31 @@
             </div>
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text">
-                    <h3>XIAOMI - A85</h3>
-                    <h2>4.000.000 đ</h2>
+                    <h3><?= $product_name ?></h3>
+                    <h2><?= $price ?> đ</h2>
                     <ul class="list">
                         <li>
                             <a class="active" href="#">
-                                <span>Hãng </span> : Xiaomi</a>
+                                <span>Hãng </span> : <?= getBrandId($brand_id)['brand_name'] ?></a>
                         </li>
                         <li>
                             <a href="#"> <span>Dung lượng</span> : 64GB</a>
                         </li>
                     </ul>
                     <p>
-                        Mill Oil is an innovative oil filled radiator with the most
-                        modern technology. If you are looking for something that can
-                        make your interior look awesome, and at the same time give you
-                        the pleasant warm feeling during the winter.
+                        <?= $description ?>
                     </p>
-                    <div class="product_count">
-                        <label for="qty">Quantity:</label>
-                        <input type="number" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty" />
-                    </div>
-                    <div class="card_area">
-                        <a class="main_btn" href="giohang.html">Thêm vào giỏ hàng</a>
-                    </div>
+                    <form action="index.php?action=addgiohang" method="POST">
+                        <div class="product_count">
+                            <label for="qty">Quantity:</label>
+                            <input type="number" name="quantity" id="sst" maxlength="12" value="1" min="1" title="Quantity:" class="input-text qty" />
+                        </div>
+                        <div class="card_area">
+
+                            <input type="hidden" value="<?= $product_id ?>" name="product_id">
+                            <input type="submit" class="main_btn" value="Thêm vào giỏ hàng" name="add_to_cart">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

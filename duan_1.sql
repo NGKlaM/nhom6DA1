@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 09, 2023 at 06:24 PM
+-- Generation Time: Apr 11, 2023 at 05:16 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -53,11 +53,17 @@ INSERT INTO `brand` (`brand_id`, `brand_name`) VALUES
 
 CREATE TABLE `cart` (
   `cart_id` int NOT NULL,
-  `price_all` int NOT NULL,
-  `datetime` date NOT NULL,
-  `note` text COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `role` tinyint(1) NOT NULL DEFAULT '0'
+  `user_id` int DEFAULT NULL,
+  `price_all` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `user_id`, `price_all`) VALUES
+(21, 5, 0),
+(22, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -69,9 +75,19 @@ CREATE TABLE `cart_detail` (
   `cart_detail_id` int NOT NULL,
   `product_id` int NOT NULL,
   `cart_id` int NOT NULL,
-  `note` varchar(100) COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `quantity` int NOT NULL DEFAULT '1',
   `datetime` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+--
+-- Dumping data for table `cart_detail`
+--
+
+INSERT INTO `cart_detail` (`cart_detail_id`, `product_id`, `cart_id`, `quantity`, `datetime`) VALUES
+(1, 14, 21, 1, '2023-04-10'),
+(2, 12, 21, 1, '2023-04-10'),
+(3, 13, 21, 1, '2023-04-10'),
+(4, 14, 21, 1, '2023-04-10');
 
 -- --------------------------------------------------------
 
@@ -127,7 +143,8 @@ INSERT INTO `product` (`product_id`, `product_name`, `image`, `description`, `de
 (12, 'iphone14 256GB 99% HOT', 'anh6.jpg', 'gsgs', 'fafaf', '2023-04-02', '2023-04-09', 99, 5000, 25, 23),
 (13, 'iphone14 256GB', 'anh8.jpg', 'gsgs', 'fafaf', '2023-04-07', '2023-04-10', 99, 5000, 22, 27),
 (14, 'iphone14 256GB', 'anh6.jpg', 'gsgs', 'fafaf', '2023-04-08', '2023-04-10', 99, 5000, 26, 27),
-(17, 'iphone14 new', 'anh7.jpg', '55', 'máy có dung lượng cao chất lượng sản phẩm tốt', '2023-04-08', '2023-04-10', 111, 123, 30, 27);
+(17, 'iphone14 new', 'anh2.jpg', 'hàng tốt', 'máy có dung lượng cao chất lượng sản phẩm tốt', '2023-04-08', '2023-04-10', 111, 123, 30, 27),
+(20, 'xiaomi redmi note 11', 'anh2.jpg', 'hàng chính hãng', 'máy có dung lượng cao chất lượng sản phẩm tốt', '2023-04-10', NULL, 111, 5000, 0, 30);
 
 -- --------------------------------------------------------
 
@@ -180,7 +197,8 @@ ALTER TABLE `brand`
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
-  ADD PRIMARY KEY (`cart_id`);
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `lk_cart_user` (`user_id`);
 
 --
 -- Indexes for table `cart_detail`
@@ -240,13 +258,13 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `cart_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  MODIFY `cart_detail_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `cart_detail_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -264,7 +282,7 @@ ALTER TABLE `image`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -283,10 +301,16 @@ ALTER TABLE `user`
 --
 
 --
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `lk_cart_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
 -- Constraints for table `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  ADD CONSTRAINT `lk_cdt_cart` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `lk_cdt_cart` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `lk_cdt_pro` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --

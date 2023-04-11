@@ -59,7 +59,7 @@
     function product_select_keyword($keyword)
     {
         $sql = "select * from product hh  JOIN brand lo ON lo.brand_id=hh.brand_id  WHERE product_name LIKE ? OR brand_name LIKE ?";
-        return pdo_query($sql, '%' . $keyword . '%', '%' . $keyword . '%');
+        return pdo_query($sql, '%'.$keyword.'%', '%'.$keyword.'%');
     }
 
 ?>
