@@ -30,7 +30,7 @@
                          <th>Ảnh</th>
                          <th>Giá Tiền</th>
                          <th>Loại</th>
-                         <th>Tạo Ngày</th>
+                         <th>Lượt xem</th>
                          <th>Update Ngày</th>
                          <th>Chức Năng</th>
                      </tr>
@@ -47,9 +47,9 @@
                              <td>
                                  <img src="../public/img/product/<?= $image ?>">
                              </td>
-                             <td><?= $price ?></td>
+                             <td><?= number_format($price,0,',','.') ?></td>
                              <td><?php echo getBrandId($brand_id)['brand_name']; ?></td>
-                             <td><?= $create_date ?></td>
+                             <td><?= $view ?></td>
                              <td><?=$update_date?></td>
                              <td><a href="index.php?action=edit_product&id_pro=<?=$product_id?>" class="btn btn-primary status pending">Sửa</a>
                                  <a href="index.php?action=deleteproduct&id_pro=<?=$product_id?>" onclick="return confirm('bạn chắc chắn xóa chứ!');" class="btn btn-primary status process">Xóa</a>

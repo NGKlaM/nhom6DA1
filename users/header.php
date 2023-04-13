@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../public/css/flaticon.css">
     <link rel="stylesheet" href="../public/css/style.css">
     <link rel="stylesheet" href="../public/css/responsive.css">
+
+
 </head>
 
 <body>
@@ -20,13 +22,13 @@
         <div class="top_menu">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-7">
+                    <div class="col-lg-5">
                         <div class="float-left">
                             <p>Phone: +84 374659924</p>
                             <p>email: zipphonemobile@gmail.com</p>
                         </div>
                     </div>
-                    <div class="col-lg-5">
+                    <div class="col-lg-7">
                         <div class="float-right">
                             <div class="right_side">
                                 <?php
@@ -41,8 +43,8 @@
                                             ?>
                                         </a>
                                     </li>
-                                    <li><a href="#">Thông tin tài khoản</a></li>
-
+                                    <li><a href="tttk.php">Thông tin tài khoản</a></li>
+                                    <li><a href="index.php?action=history">Lịch sử mua hàng</a></li>
                                     <li><a href="index.php?action=logout">Đăng xuất</a></li>
                                 <?php endif ?>
                             </div>
@@ -85,6 +87,16 @@
 
                             <div class="col-lg-5 pr-0">
                                 <ul class="nav navbar-nav navbar-right right_nav pull-right">
+                                    <form class="form-inline" action="index.php?action=sanpham" method="POST">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control form-control-sm" placeholder="Search" name="key-search">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-success btn-sm" type="submit" name="btn-search">
+                                                    <i class="ti-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
 
 
                                     <li class="nav-item">

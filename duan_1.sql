@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 11, 2023 at 05:16 AM
+-- Generation Time: Apr 12, 2023 at 04:29 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -53,17 +53,24 @@ INSERT INTO `brand` (`brand_id`, `brand_name`) VALUES
 
 CREATE TABLE `cart` (
   `cart_id` int NOT NULL,
-  `user_id` int DEFAULT NULL,
-  `price_all` int NOT NULL DEFAULT '0'
+  `code` varchar(6) COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `user_id` int NOT NULL,
+  `price_all` int NOT NULL DEFAULT '0',
+  `role` tinyint(1) NOT NULL DEFAULT '0',
+  `note` text COLLATE utf8mb4_vietnamese_ci,
+  `date_time` datetime NOT NULL,
+  `payment` tinyint(1) NOT NULL COMMENT 'phương thức thanh toán\r\n0 thanh toán khi nhận hàng.\r\n1 tài khoản ngân hàng'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`cart_id`, `user_id`, `price_all`) VALUES
-(21, 5, 0),
-(22, 5, 0);
+INSERT INTO `cart` (`cart_id`, `code`, `user_id`, `price_all`, `role`, `note`, `date_time`, `payment`) VALUES
+(27, '5DX2B', 5, 54635000, 0, '', '2023-04-12 00:00:00', 1),
+(28, 'GH8kC', 5, 27340000, 0, '', '2023-04-12 00:00:00', 0),
+(29, 'b59Dh', 5, 55000, 0, '', '2023-04-12 00:00:00', 0),
+(30, 'Yig97', 5, 27340123, 0, 'tôi muốn được gói hàng kĩ', '2023-04-12 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -74,20 +81,22 @@ INSERT INTO `cart` (`cart_id`, `user_id`, `price_all`) VALUES
 CREATE TABLE `cart_detail` (
   `cart_detail_id` int NOT NULL,
   `product_id` int NOT NULL,
-  `cart_id` int NOT NULL,
-  `quantity` int NOT NULL DEFAULT '1',
-  `datetime` date NOT NULL
+  `code` varchar(6) COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `quantity` int NOT NULL,
+  `total_price` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
 -- Dumping data for table `cart_detail`
 --
 
-INSERT INTO `cart_detail` (`cart_detail_id`, `product_id`, `cart_id`, `quantity`, `datetime`) VALUES
-(1, 14, 21, 1, '2023-04-10'),
-(2, 12, 21, 1, '2023-04-10'),
-(3, 13, 21, 1, '2023-04-10'),
-(4, 14, 21, 1, '2023-04-10');
+INSERT INTO `cart_detail` (`cart_detail_id`, `product_id`, `code`, `quantity`, `total_price`) VALUES
+(13, 12, '5DX2B', 2, 54580000),
+(14, 14, '5DX2B', 1, 5000),
+(15, 12, 'GH8kC', 1, 27290000),
+(16, 14, 'b59Dh', 1, 5000),
+(17, 12, 'Yig97', 1, 27290000),
+(18, 17, 'Yig97', 1, 123);
 
 -- --------------------------------------------------------
 
@@ -126,7 +135,7 @@ CREATE TABLE `product` (
   `product_name` varchar(25) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `image` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `description` varchar(200) COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `detail` varchar(100) COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `detail` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `create_date` date NOT NULL,
   `update_date` date DEFAULT NULL,
   `quantity` int NOT NULL,
@@ -140,11 +149,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `image`, `description`, `detail`, `create_date`, `update_date`, `quantity`, `price`, `view`, `brand_id`) VALUES
-(12, 'iphone14 256GB 99% HOT', 'anh6.jpg', 'gsgs', 'fafaf', '2023-04-02', '2023-04-09', 99, 5000, 25, 23),
-(13, 'iphone14 256GB', 'anh8.jpg', 'gsgs', 'fafaf', '2023-04-07', '2023-04-10', 99, 5000, 22, 27),
-(14, 'iphone14 256GB', 'anh6.jpg', 'gsgs', 'fafaf', '2023-04-08', '2023-04-10', 99, 5000, 26, 27),
-(17, 'iphone14 new', 'anh2.jpg', 'hàng tốt', 'máy có dung lượng cao chất lượng sản phẩm tốt', '2023-04-08', '2023-04-10', 111, 123, 30, 27),
-(20, 'xiaomi redmi note 11', 'anh2.jpg', 'hàng chính hãng', 'máy có dung lượng cao chất lượng sản phẩm tốt', '2023-04-10', NULL, 111, 5000, 0, 30);
+(12, 'iPhone 14 Pro Max 128GB', 'anh3.jpg', ' iPhone 14 Pro Max một siêu phẩm trong giới smartphone được nhà Táo tung ra thị trường vào tháng 09/2022.', 'iPhone năm nay sẽ được thừa hưởng nét đặc trưng từ người anh iPhone 13 Pro Max, vẫn sẽ là khung thép không gỉ và mặt lưng kính cường lực kết hợp với tạo hình vuông vức hiện đại thông qua cách tạo hình phẳng ở các cạnh và phần mặt lưng.Điểm ấn tượng nhất trên điện thoại iPhone năm nay nằm ở thiết kế màn hình, có thể dễ dàng nhận thấy được là hãng cũng đã loại bỏ cụm tai thỏ truyền thống qua bao đời iPhone bằng một hình dáng mới vô cùng lạ mắt.', '2023-04-02', '2023-04-11', 99, 27290000, 38, 23),
+(13, 'iphone14 256GB', 'anh8.jpg', 'gsgs', 'fafaf', '2023-04-07', '2023-04-10', 99, 5000, 30, 27),
+(14, 'iphone14 256GB', 'anh6.jpg', 'gsgs', 'fafaf', '2023-04-08', '2023-04-10', 99, 5000, 38, 27),
+(17, 'iphone14 new', 'anh2.jpg', 'hàng tốt', 'máy có dung lượng cao chất lượng sản phẩm tốt', '2023-04-08', '2023-04-10', 111, 123, 31, 27),
+(20, 'Xiaomi Redmi Note 11 Pro ', 'anh2.jpg', ' Xiaomi Redmi Note 11 Pro 4G mang trong mình khá nhiều những nâng cấp cực kì sáng giá. Là chiếc điện thoại có màn hình lớn, tần số quét 120 Hz, hiệu năng ổn định cùng một viên pin siêu trâu.', 'Điểm nổi bật ở phần thiết kế của Redmi Note 11 Pro chính là cụm camera khá lớn và lồi so với mặt lưng, mặt lưng có chất liệu bằng kính đã được làm phẳng đi. Khung viền bằng nhựa cũng được bo tròn và vát phẳng rất liền mạch, mức độ hoàn thiện tốt, không có hiện tượng ọp ẹp khi mình sử dụng chiếc máy này..', '2023-04-10', '2023-04-11', 111, 5900000, 7, 30);
 
 -- --------------------------------------------------------
 
@@ -171,17 +180,16 @@ CREATE TABLE `user` (
   `phone_number` varchar(11) COLLATE utf8mb4_vietnamese_ci DEFAULT NULL,
   `address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci,
   `password` varchar(100) COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `role` tinyint(1) NOT NULL DEFAULT '0',
-  `cart_id` int DEFAULT NULL
+  `role` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `user_name`, `image`, `email`, `phone_number`, `address`, `password`, `role`, `cart_id`) VALUES
-(4, 'toanlqph', 'IMG_20220509_230128.jpg', 'lcqtpk24315@dcctb.com', '1111111', 'tiền phong', '12345', 1, NULL),
-(5, 'toan', 'user.png', 'lcqtpk24315@dcctb.com', '1111111', NULL, '123', 0, NULL);
+INSERT INTO `user` (`user_id`, `user_name`, `image`, `email`, `phone_number`, `address`, `password`, `role`) VALUES
+(4, 'toanlqph', 'author.png', 'lcqtpk24315@dcctb.com', '1111111', 'tiền phong', '12345', 1),
+(5, 'toan', 'user.png', 'lcqtpk24315@dcctb.com', '1111111', NULL, '123', 0);
 
 --
 -- Indexes for dumped tables
@@ -205,8 +213,7 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `cart_detail`
   ADD PRIMARY KEY (`cart_detail_id`),
-  ADD KEY `lk_cdt_pro` (`product_id`),
-  ADD KEY `lk_cdt_cart` (`cart_id`);
+  ADD KEY `lk_cdt_pro` (`product_id`);
 
 --
 -- Indexes for table `comment`
@@ -240,9 +247,7 @@ ALTER TABLE `role`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `lk_user_cart` (`cart_id`),
-  ADD KEY `lk_user_role` (`role`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -258,13 +263,13 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `cart_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  MODIFY `cart_detail_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cart_detail_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -310,7 +315,6 @@ ALTER TABLE `cart`
 -- Constraints for table `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  ADD CONSTRAINT `lk_cdt_cart` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `lk_cdt_pro` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
@@ -331,12 +335,6 @@ ALTER TABLE `image`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `lk_pro_brand` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`brand_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Constraints for table `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `lk_user_cart` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

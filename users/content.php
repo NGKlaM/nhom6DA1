@@ -87,7 +87,7 @@
                                 <a href="index.php?action=chitietsp&id_product=<?= $product_id ?>">
                                     <i class="ti-eye" title="Chi tiết sản phẩm"></i>
                                 </a>
-                                <a href="#">
+                                <a href="index.php?action=addgiohang&id_pro=<?= $product_id ?>">
                                     <i class="ti-shopping-cart" title="Thêm vào giỏ hàng"></i>
                                 </a>
                             </div>
@@ -97,7 +97,7 @@
                                 <h4 title="Chi tiết sản phẩm"><?= $product_name ?> </h4>
                             </a>
                             <div class="mt-3">
-                                <span class="mr-4"><?= $price ?>đ</span>
+                                <span class="mr-4"><?= number_format($price, 0, ',', '.') ?>đ</span>
                                 <del>14.000.000 đ</del>
                             </div>
                         </div>
@@ -133,7 +133,7 @@
                                 <a href="index.php?action=chitietsp&id_product=<?= $product_id ?>">
                                     <i class="ti-eye" title="Chi tiết sản phẩm"></i>
                                 </a>
-                                <a href="#">
+                                <a href="index.php?action=addgiohang&id_pro=<?= $product_id ?>">
                                     <i class="ti-shopping-cart" title="Thêm vào giỏ hàng"></i>
                                 </a>
                             </div>
@@ -143,7 +143,7 @@
                                 <h4><?= $product_name ?></h4>
                             </a>
                             <div class="mt-3">
-                                <span class="mr-4"><?= $price ?> đ</span>
+                                <span class="mr-4"><?= number_format($price, 0, ',', '.') ?> đ</span>
                                 <del>$35.00</del>
                             </div>
                         </div>

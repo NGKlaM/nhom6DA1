@@ -48,22 +48,20 @@
                 break;
             
             case 'addgiohang':
-                
                 if(!isset($_SESSION['user'])){
                     echo '<script>alert("Đăng nhập để tiếp tục");window.location="login.php";</script>';    
                 }
                 else{
                     if (!isset($_SESSION['cart'])) {
                         $_SESSION['cart'] = array();
-                        $cart_id = cart_insert($_SESSION['user']['user_id']);
                     }
-                    if(isset($_POST['add_to_cart'])){
-                        $product_id = $_POST['product_id'];
-                        $quantity = $_POST['quantity'];
-                        $date = date('Y-m-d');
-                        $cart_id = get_id_cart_by_user_id($_SESSION['user']['user_id']);
+                    if(isset($_POST['add_to_cart'])||isset($_GET['id_pro'])){
+                        $product_id = isset($_POST['product_id'])?$_POST['product_id']:$_GET['id_pro'];
+                        $quantity = isset($_POST['quantity'])?$_POST['quantity']:'1';
+                        $date = date('Y-d-m');
                         if(isset($_SESSION['cart'][$product_id])){
                             $_SESSION['cart'][$product_id]['quantity'] +=$quantity;
+                            $_SESSION['cart'][$product_id]['total_price'] = $_SESSION['cart'][$product_id]['price'] * $_SESSION['cart'][$product_id]['quantity'];
                         }
                         else{
                             $product = getProductId($product_id);
@@ -72,19 +70,77 @@
                                 'price' => $product['price'],
                                 'image' => $product['image'],
                                 'cart_id' => $cart_id,
-                                'quantity' => $quantity
+                                'quantity' => $quantity,
+                                'total_price' => $product['price'] * $quantity,
+                                'date' => $date
                             ];
-                            createCartDetail($cart_id,$product_id,$quantity,$date);
+                            
                         }
                     }
+                    header('location: index.php?action=giohang');
                 }
-                include_once '../users/giohang/giohang.php';
+                break;
+            case 'cong_cart':
+                if(isset($_GET['id_pro'])){
+                    $id_product=$_GET['id_pro'];
+                    if(!empty($_SESSION['cart'][$id_product]['quantity'])){
+                        $_SESSION['cart'][$id_product]['quantity']+=1;
+                        $_SESSION['cart'][$id_product]['total_price'] = $_SESSION['cart'][$id_product]['quantity'] * $_SESSION['cart'][$id_product]['price'];
+                        header('location: index.php?action=giohang');
+                    }
+                }
+                break;
+            case 'tru_cart':
+                if (isset($_GET['id_pro'])) {
+                    $id_product = $_GET['id_pro'];
+                    if (!empty($_SESSION['cart'][$id_product]['quantity'])) {
+                        $_SESSION['cart'][$id_product]['quantity'] -= 1;
+                        $_SESSION['cart'][$id_product]['total_price'] = $_SESSION['cart'][$id_product]['quantity'] * $_SESSION['cart'][$id_product]['price'];
+                        header('location: index.php?action=giohang');
+                    }
+                }
+                break;
+            case 'delete_cart':
+                if(isset($_GET['id'])){
+                    unset($_SESSION['cart'][$_GET['id']]);
+                    header('location: index.php?action=giohang');
+                }
                 break;
             case 'giohang':
                 include_once '../users/giohang/giohang.php';
                 break;
             case 'thanhtoan':
+                if(isset($_POST['btn_thanhtoan'])){
+                    $id_user = $_SESSION['user']['user_id'];
+                    $randomNum = substr(str_shuffle("1234567890abcdeghikxyzABCDEGHIKXYZ"), 0, 5);
+                    $code = $randomNum;
+                    foreach(get_all_cart() as $cart){
+                        if($cart['code'] == $code){
+                            $code = substr(str_shuffle("1234567890abcdeghikxyzABCDEGHIKXYZ"), 0, 5);
+                        }
+                    }
+                    $date = date('Y-m-d H:s:i');
+                    $note = !empty($_POST['message'])?$_POST['message']:'';
+                    $phone = $_POST['number'];
+                    $add = $_POST['add1'];
+                    $tong_tien = 50000;
+                    foreach($_SESSION['cart'] as $product ){
+                        $tong_tien += $product['total_price'];
+                    }
+                    $payment = $_POST['selector'];
+                    cart_insert($code,$phone,$add,$id_user,$tong_tien,$note,$date,$payment);
+                    foreach($_SESSION['cart'] as $product_id => $product){
+                        extract($product);
+                        createCartDetail($product_id,$code,$quantity,$total_price);
+                    }
+                    unset($_SESSION['cart']);
+
+                    header('location: index.php?action=history');
+                }
                 include_once '../users/giohang/thanhtoan.php';
+                break;
+            case 'history':
+                include_once '../users/history.php';
                 break;
             case 'lienhe':
                 include_once '../users/lienhe.php';
@@ -102,13 +158,18 @@
                 include_once '../users/sanpham/brand_sp.php';
                 break;
             case 'chitietsp':
+
                 if(isset($_GET['id_product'])){
                     $product = getProductId($_GET['id_product']);
+                    product_update_view($_GET['id_product']);
                 }
                 renderUS('sanpham/sanphamct',['product'=>$product]);
                 break;
             case 'gioithieu':
                 include_once '../users/gioithieu.php';
+                break;
+            case 'tttk':
+                include_once '../users/tttk.php';
                 break;
             default:
                 include_once '../users/content.php';
@@ -119,4 +180,3 @@
     }
     include_once '../users/footer.php';
     ob_end_flush();
-?>

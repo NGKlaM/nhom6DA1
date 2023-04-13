@@ -1,13 +1,30 @@
 <?php
     include_once 'pdo.php';
 
-function cart_insert($user_id)
+function cart_insert($code,$phone,$add,$user_id,$price_all,$note,$date_time,$payment)
 {
-    $sql = "INSERT INTO cart(user_id) VALUE(?)";
-    pdo_execute($sql, $user_id);
-    $sql2 = "select max(cart_id) from cart";
-    $cart_id = pdo_query_value($sql2);
-    return $cart_id;
+    $sql = "insert into cart(code,phone_number,address,user_id,price_all,note,date_time,payment) value (?,?,?,?,?,?,?,?)";
+    pdo_execute($sql, $code,$phone,$add, $user_id, $price_all, $note, $date_time, $payment);
+}
+function get_all_cart(){
+    $sql = "select * from cart";
+    return pdo_query($sql);
+}
+function get_bill_by_user($user_id){
+    $sql = "select * from cart where user_id = ?";
+    return pdo_query($sql,$user_id);
+}
+function get_cartdetail_by_code($code){
+    $sql = "select * from cart_detail where code = ?";
+    return pdo_query($sql,$code);
+}
+function get_cart_by_id($cart_id){
+    $sql = "select * from cart where cart_id = ?";
+    return pdo_query_one($sql,$cart_id);
+}
+function update_cart($role,$cart_id){
+    $sql = "update cart set role =? where cart_id = ?";
+    return pdo_execute($sql,$role,$cart_id);
 }
 function get_id_cart_by_user_id($user_id){
     $sql = "select cart_id from cart where user_id = ?";
@@ -17,9 +34,9 @@ function getCartDetailId($cart_id,$product_id){
     $sql = "select cart_detail_id from cart_detail where cart_id = ? and product_id = ?";
     return pdo_query_value($sql,$cart_id,$product_id);
 }
-function createCartDetail($cart_id,$product_id,$quantity,$date){
-    $sql = "insert into cart_detail(cart_id,product_id,quantity,datetime) value(?,?,?,?)";
-    pdo_execute($sql, $cart_id, $product_id, $quantity, $date);
+function createCartDetail($product_id,$code,$quantity,$total_price){
+    $sql = "insert into cart_detail(product_id,code,quantity,total_price) value(?,?,?,?)";
+    pdo_execute($sql,$product_id, $code, $quantity, $total_price);
 }
 function updateCartDetail($cart_detail_id,$quantity){
     $sql = "update cart_detail set quantity= ? where cart_detail_id = ?";

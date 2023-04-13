@@ -7,7 +7,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thêm Mới Sản Phẩm</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Sửa Sản Phẩm</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -53,7 +53,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" name="btn_update_pro" class="btn btn-primary">Add</button>
+                <button type="submit" name="btn_update_pro" class="btn btn-primary">Update</button>
             </div>
             <span><?= (isset($MES) && !empty($MES)) ? $MES : '' ?></span>
         </div>

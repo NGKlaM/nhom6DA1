@@ -8,6 +8,7 @@
     include_once '../model/brand.php';
     include_once '../model/comment.php';
     include_once '../model/thongke.php';
+    include_once '../model/cart.php';
     if(isset($_GET['action'])){
         $url = $_GET['action'];
         switch($url){
@@ -186,7 +187,28 @@
 
                 break;
             case 'donhang':
-                include "../admin/binh_luan/binh_luan.php";
+                $cart = get_all_cart();
+                renderAD('don_hang/list',['list_cart' => $cart]);
+                break;
+            case 'edit_cart':
+                if(isset($_GET['id_cart'])){
+                    $cart = get_cart_by_id($_GET['id_cart']);
+                    renderAD('don_hang/update_cart',['cart'=>$cart]);
+                }
+                break;
+            case 'update_cart':
+                if(isset($_POST['btn_update'])){
+                    $role = $_POST['status'];
+                    $cart_id = $_POST['cart_id'];
+                    update_cart($role,$cart_id);
+                    echo "<script>alert('Cập nhật thành công!');window.location='index.php?action=donhang'</script>";
+                }
+                break;
+            case 'detail_cart':
+                if(isset($_GET['id_cart'])){
+                    $cart = get_cart_by_id($_GET['id_cart']);
+                    renderAD('don_hang/detail',['cart'=>$cart]);
+                }
                 break;
             case 'thongke':
                 $tk = tk_hang_hoa();
