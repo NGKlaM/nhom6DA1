@@ -1,8 +1,8 @@
 var images = [];
-for (var i = 1; i < 4; i++) {
-    images[i] = new Image();
-    images[i].src = "public/images/banner" + i + ".jpg";
-}
+    for (var i = 1; i < 4; i++) {
+        images[i] = new Image();
+        images[i].src = "./public/images/banner" + i + ".jpg";
+    }
 var index = 1;
 var anh = document.getElementById("banner_image");
 function Start() {
@@ -11,6 +11,6 @@ function Start() {
         index = 1;
     }
     anh.src = images[index].src;
-    t = setTimeout("Start()", 1000);
+    t = setTimeout("Start()", 2000);
 }
 Start();

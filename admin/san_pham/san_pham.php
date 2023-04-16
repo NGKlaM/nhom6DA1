@@ -15,7 +15,7 @@
 				<span class="num">8</span>
 			</a>
 			<a href="#" class="profile">
-				<img src="./public/images/people.png">
+				<img src="../public/images/people.png">
 			</a>
 		</nav>
         <!-- NAVBAR -->
@@ -88,13 +88,62 @@
 									John Doe
 								</td>
 								<td>
-                                    <img src="./public/images/people.png">
+                                    <img src="../public/images/people.png">
 								</td>
 								<td>10.000.000 </td>
 								<td>Iphone</td>
 								<td>01-10-2021</td>
 								<td>01-10-2021</td>
 								<td><button type="button" class="btn btn-primary status pending" data-toggle="modal" data-target="#sua-san-pham">Sửa</button>
+									<button type="button" class="btn btn-primary status process" data-toggle="modal" data-target="#xoa-san-pham">Xóa</button>
+								</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>
+									John Doe
+								</td>
+								<td>
+									<img src="../public/images/people.png">
+								</td>
+								<td>10.000.000 </td>
+								<td>Iphone</td>
+								<td>01-10-2021</td>
+								<td>01-10-2021</td>
+								<td><button type="button" class="btn btn-primary status pending" data-toggle="modal" data-target="#sua-san-pham">Sửa</button>
+									<button type="button" class="btn btn-primary status process" data-toggle="modal" data-target="#xoa-san-pham">Xóa</button>
+								</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>
+									John Doe
+								</td>
+								<td>
+									<img src="../public/images/people.png">
+								</td>
+								<td>10.000.000 </td>
+								<td>Iphone</td>
+								<td>01-10-2021</td>
+								<td>01-10-2021</td>
+								<td><button type="button" class="btn btn-primary status pending" data-toggle="modal" data-target="#sua-san-pham">Sửa</button>
+									<button type="button" class="btn btn-primary status process" data-toggle="modal" data-target="#xoa-san-pham">Xóa</button>
+								</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>
+									John Doe
+								</td>
+								<td>
+									<img src="../public/images/people.png">
+								</td>
+								<td>10.000.000 </td>
+								<td>Iphone</td>
+								<td>01-10-2021</td>
+								<td>01-10-2021</td>
+								<td>
+									<button type="button" class="btn btn-primary status pending" data-toggle="modal" data-target="#sua-san-pham">Sửa</button>
 									<button type="button" class="btn btn-primary status process" data-toggle="modal" data-target="#xoa-san-pham">Xóa</button>
 								</td>
 							</tr>
