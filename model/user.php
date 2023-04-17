@@ -5,6 +5,14 @@ function check_login($ma_kh, $pass)
     $sql = "select *from user where user_name = ? and password = ?";
     return pdo_query_one($sql, $ma_kh, $pass);
 }
+function get_user_by_user($user){
+    $sql = "select * from user where user_name = ? ";
+    return pdo_query_one($sql,$user);
+}
+function user_forgot_pass($pass,$user){
+    $sql = "update user set password = ? where user_name= ? ";
+    pdo_execute($sql,$pass,$user);
+}
 function getalluser(){
     $sql ="select * from user";
     return pdo_query($sql);
@@ -39,5 +47,8 @@ function user_delete($ma_kh)
     } else
         pdo_execute($sql, $ma_kh);
 }
-
+function user_check($user){
+    $sql ="select count(*) from user where user_name = ? ";
+    return pdo_query_value($sql,$user);
+}
 ?>

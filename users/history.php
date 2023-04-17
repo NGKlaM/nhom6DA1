@@ -21,10 +21,10 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th scope="col">Mã đơn hàng</th>
-                            <th scope="col">Giá Tiền</th>
+                            <th scope="col" class="col-lg-3">Mã đơn hàng</th>
+                            <th scope="col" class="col-lg-2">Giá Tiền</th>
+                            <th scope="col">Ngày đặt</th>
                             <th scope="col">Trạng thái</th>
-                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,35 +36,55 @@
                                 extract($cart);
                                 $stt += 1;
                         ?>
-                                <tr>
+                                <tr class="">
                                     <td><?= $stt ?></td>
                                     <td><?= $code ?></td>
-                                    <td><?= $price_all ?></td>
+                                    <td><?= number_format($price_all) ?>đ</td>
+                                    <td><?= $date_time?></td>
                                     <td><?php
                                         if ($role == 0) {
-                                            echo "<span class='badge badge-danger '>Chờ xác nhận</span>";
+                                            echo "Chờ xác nhận";
                                         } elseif ($role == 1) {
-                                            echo 'Đang giao';
-                                        } else {
-                                            echo 'Đã nhận được hàng';
+                                            echo 'Đang xử lí';
+                                        } elseif ($role == 2) {
+                                            echo 'Đang giao hàng';
+                                        } elseif ($role == 3) {
+                                            echo 'Đã giao hàng';
+                                        } elseif ($role == 4) {
+                                            echo 'Đã hủy';
+                                        } elseif($role == 5){
+                                            echo 'Chờ xác nhận hủy đơn';
                                         }
                                         ?></td>
-                                    <td><button type="button" class="dropdown-toggle btn btn-sm btn-sucsess" data-toggle="collapse" aria-expanded="false" aria-controls="detail-cart<?=$code?>" data-target="#detail-cart<?=$code?>">Chi tiết</button></td>
+                                    <td>
+                                        <button type="button" class=" btn btn-sm btn-success" data-toggle="collapse" aria-expanded="false" aria-controls="detail-cart<?= $code ?>" data-target="#detail-cart<?= $code ?>">Chi tiết</button>
+                                        <?php
+                                            if($role == 0 || $role == 1 ){
+                                        ?>
+                                            <a type="button" href="index.php?action=huydon&id_cart=<?=$cart_id?>" class="btn btn-sm btn-warning text-light">
+                                                <?=$role == 5 ? '' : 'Yêu cầu hủy đơn'?>
+                                            </a>
+                                        <?php
+                                            }
+                                            
+                                        ?>
+                                    </td>
                                 </tr>
+
                                 <?php
                                 foreach (get_cartdetail_by_code($code) as $cart_detail) {
                                 ?>
-                                    <tr id="detail-cart<?=$code?>" class="collapse">
+                                    <tr id="detail-cart<?= $code ?>" class="collapse">
                                         <td></td>
                                         <td><?= getProductId($cart_detail['product_id'])['product_name'] ?></td>
-                                        <td><img src="../public/img/product/<?= getProductId($cart_detail['product_id'])['image'] ?>" style="width: 40px; height: 65px;" alt=""></td>
-                                        <td><?=$cart_detail['quantity']?></td>
-                                        <td><?=$cart_detail['total_price']?></td>
+                                        <td><img src="../public/img/product/<?= getProductId($cart_detail['product_id'])['image'] ?>" style="width: 40px; " alt=""></td>
+                                        <td><?= $cart_detail['quantity'] ?></td>
+                                        <td><?= number_format($cart_detail['total_price']) ?>đ</td>
+                                        <td></td>
                                     </tr>
                                 <?php } ?>
                         <?php  }
                         } ?>
-                
                     </tbody>
                 </table>
             </div>

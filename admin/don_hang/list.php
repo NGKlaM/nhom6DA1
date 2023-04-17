@@ -46,25 +46,29 @@
                                 <td><?= number_format($price_all) ?></td>
                                 <td><?= $date_time ?></td>
                                 <td><span class="status completed">
-                                    <?php
-                                        if($payment == 0){
+                                        <?php
+                                        if ($payment == 0) {
                                             echo "Thanh toán khi nhận hàng";
-                                        }else echo 'Chuyển khoản ngân hàng';
-                                    ?>
-                                </span></td>
-                                <td><span class="status completed">
-                                    <?php
-                                        if($role == 0){echo 'Chờ xác nhận';}
-                                        elseif($role == 1){echo 'Đang xử lí';}
-                                        elseif($role == 2){echo 'Đang giao';}
-                                        else if($role == 3){
+                                        } else echo 'Chuyển khoản ngân hàng';
+                                        ?>
+                                    </span></td>
+                                <td><span class="status pending">
+                                        <?php
+                                        if ($role == 0) {
+                                            echo 'Chờ xác nhận';
+                                        } elseif ($role == 1) {
+                                            echo 'Đang xử lí';
+                                        } elseif ($role == 2) {
+                                            echo 'Đang giao';
+                                        } else if ($role == 3) {
                                             echo 'Đã nhận được hàng';
-                                        }
-                                        else{
+                                        } else if($role == 4) {
                                             echo 'Đã hủy';
+                                        } else if($role == 5){
+                                            echo 'Yêu cầu hủy đơn';
                                         }
-                                    ?>
-                                </span></td>
+                                        ?>
+                                    </span></td>
                                 <td>
                                     <a href="index.php?action=edit_cart&id_cart=<?= $cart_id ?>" class="btn-sm btn btn-success">Sửa</a>
                                     <a href="index.php?action=detail_cart&id_cart=<?= $cart_id ?>" class="btn btn-sm btn-danger">Chi tiết</a>

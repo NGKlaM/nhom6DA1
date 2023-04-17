@@ -23,12 +23,9 @@ if (is_array($product)) {
         <div class="row s_product_inner">
             <div class="col-lg-6">
                 <div class="s_product_img">
-                    <div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="../public/img/product/<?= $image ?>" alt="firt" />
-                            </div>
-
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="../public/img/product/<?= $image ?>" alt="firt" style="padding: 50px;" />
                         </div>
                     </div>
                 </div>
@@ -52,7 +49,7 @@ if (is_array($product)) {
                     <form action="index.php?action=addgiohang" method="POST">
                         <div class="product_count">
                             <label for="qty">Quantity:</label>
-                            <input type="number" name="quantity" id="sst" maxlength="12" value="1" min="1" title="Quantity:" class="input-text qty" />
+                            <input type="number" name="quantity" id="sst" max="3" value="1" min="1" title="Quantity:" class="input-text qty" />
                         </div>
                         <div class="card_area">
 
@@ -67,8 +64,8 @@ if (is_array($product)) {
 </div>
 <!--================End Single Product Area =================-->
 
-<div class="product-info-tabs container">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
+<!-- <div class="product-info-tabs container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-bottom: 10px;">
         <li class="nav-item">
             <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Sự mô tả</a>
         </li>
@@ -77,42 +74,97 @@ if (is_array($product)) {
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active p-3" id="description" role="tabpanel" aria-labelledby="description-tab">
-            <?= $detail ?>
+        <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab" style="color: #797979;">
+            <?php // $detail 
+            ?>
+
+
         </div>
-        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-            <div class="row  pb-2">
-                <div class="card" style="border:none;">
-                    <div class="card-body grid">
-                        <?php
-                        // $comments = binh_luan_select_by_id($id_hh);
-                        // foreach ($comments as $comment) {
-                        //     extract($comment);
-                        ?>
-                        <div class="bg-body-secondary mb-2 " style="display:inline-block; padding: 5px 10px; border-radius: 10px; width: auto;">
-                            <h6 class="card-title">hihih</h6>
-                            <p class="card-text ps-3">hhhhhhhhhhhhhhhhhhhh</p>
-                        </div><br>
-                        <?php
-                        //}
-                        ?>
-                    </div>
-                    <div class="card-footer border-0 bg-white text-center">
-                        <form action="" method="POST" class="d-flex">
-                            <input class="form-control me-2 " type="text" name="noi_dung" placeholder="Nội dung" aria-label="Search">
-                            <button class="btn btn-light" type="submit" name="btn_gui">Gửi</button>
-                        </form>
-                    </div>
-                </div>
+        <div class="tab-pane fade " id="review" role="tabpanel" aria-labelledby="review-tab" style="color: #797979;">
+            <div class="review-heading">ĐÁNH GIÁ</div>
+            <div>
+                <p>hihi</p>
+                <p>hihi</p>
             </div>
+            <form class="review-form" action="index.php?action=comment" method="POST">
+
+                <div class="form-group">
+                    <input type="hidden" name="id_product" value="<?php //$product_id
+                                                                    ?>">
+                    <label>Đánh giá của bạn</label>
+                    <input name="note" type="text" class="form-control">
+                </div>
+
+                <button type="submit" name="btn_gui" class="btn btn-primary">Gửi đánh giá</button>
+            </form>
         </div>
     </div>
-    <div class="row mt-5">
+</div> -->
+<div class="product-info-tabs container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Sự mô tả</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Nhận xét</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+            <?= $detail ?>
+
+        </div>
+        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+            <div class="review-heading">ĐÁNH GIÁ</div>
+            <div class="mb-20">
+                <?php
+                foreach (comment_select_by_product_id($product_id) as $comment) {
+                    extract($comment);
+                ?>
+                    <div class=" mb-2 " style="display:inline-block; padding: 5px 10px; border-radius: 10px; width: auto; background-color:#f6f6f6;">
+                        <h6 class="card-title"><?= get_user_by_id($user_id)['user_name'] ?></h6>
+                        <p class="card-text ps-3"><?= $note ?></p>
+                    </div><br>
+                <?php
+                }
+                ?>
+            </div>
+            <form class="review-form" action="index.php?action=comment" method="POST">
+                <div class="form-group">
+                    <label>Đánh giá của bạn</label>
+                    <div class="reviews-counter">
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="id_product" value="<?= $product_id ?>">
+
+                    <label>Tin nhắn của bạn</label>
+
+                    <input name="note" type="text" class="form-control">
+                </div>
+
+                <button type="submit" name="btn_gui" class="round-black-btn">Gửi đánh giá</button>
+            </form>
+        </div>
+    </div>
+    <div class="row ">
         <?php
-        foreach (get_3_hot_view() as $pro_view) :
+        foreach (get8productnew() as $pro_view) :
             extract($pro_view);
         ?>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-3 col-md-6">
                 <div class="single-product">
                     <div class="product-img">
                         <img class="img-fluid w-100" src="../public/img/product/<?= $image ?>" alt="" />
@@ -127,11 +179,11 @@ if (is_array($product)) {
                     </div>
                     <div class="product-btm">
                         <a href="index.php?action=chitietsp&id_product=<?= $product_id ?>" class="d-block">
-                            <h4 title="Chi tiết sản phẩm"><?= $product_name ?> </h4>
+                            <h4><?= $product_name ?></h4>
                         </a>
                         <div class="mt-3">
-                            <span class="mr-4"><?= number_format($price, 0, ',', '.') ?>đ</span>
-                            <del>14.000.000 đ</del>
+                            <span class="mr-4"><?= number_format($price, 0, ',', '.') ?> đ</span>
+                            <del>$35.00</del>
                         </div>
                     </div>
                 </div>

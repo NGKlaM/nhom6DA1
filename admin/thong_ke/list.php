@@ -13,6 +13,36 @@
             </ul>
         </div>
     </div>
+    <ul class="box-info">
+        <li>
+            <i class='bx bxs-calendar-check'></i>
+            <span class="text">
+                <h3><?=so_luong_don_hang()?></h3>
+                <p>Đơn Hàng</p>
+            </span>
+        </li>
+        <li>
+            <i class='bx bxs-group'></i>
+            <span class="text">
+                <h3><?=so_luong_user()?></h3>
+                <p>User</p>
+            </span>
+        </li>
+        <li>
+            <i class='bx bxl-product-hunt'></i>
+            <span class="text">
+                <h3><?=so_luong_hang()?></h3>
+                <p>sản phẩm</p>
+            </span>
+        </li>
+        <li>
+            <i class='bx bxs-dollar-circle'></i>
+            <span class="text">
+                <h3><?=number_format(+(tong_doanh_thu()))?>đ</h3>
+                <p>Doanh Thu</p>
+            </span>
+        </li>
+    </ul>
 
     <div class="table-data">
         <div class="order">
@@ -39,9 +69,9 @@
                             <td>1</td>
                             <td><?= $brand_name ?></td>
                             <td><?= $so_luong ?></td>
-                            <td><?= $gia_max ?></td>
-                            <td><?= $gia_min ?></td>
-                            <td><?=$gia_avg?></td>
+                            <td><?= number_format($gia_max) ?></td>
+                            <td><?= number_format($gia_min) ?></td>
+                            <td><?= number_format($gia_avg) ?></td>
                         </tr>
                     <?php
                     } ?>
@@ -50,6 +80,10 @@
         </div>
 
     </div>
+
+
+
+
 </main>
 <!-- MAIN -->
 </section>

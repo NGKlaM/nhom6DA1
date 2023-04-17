@@ -32,6 +32,7 @@
                          <th>Loại</th>
                          <th>Lượt xem</th>
                          <th>Update Ngày</th>
+                         <th>Số lượng</th>
                          <th>Chức Năng</th>
                      </tr>
                  </thead>
@@ -51,6 +52,7 @@
                              <td><?php echo getBrandId($brand_id)['brand_name']; ?></td>
                              <td><?= $view ?></td>
                              <td><?=$update_date?></td>
+                             <td><?=$quantity?></td>
                              <td><a href="index.php?action=edit_product&id_pro=<?=$product_id?>" class="btn btn-primary status pending">Sửa</a>
                                  <a href="index.php?action=deleteproduct&id_pro=<?=$product_id?>" onclick="return confirm('bạn chắc chắn xóa chứ!');" class="btn btn-primary status process">Xóa</a>
                              </td>

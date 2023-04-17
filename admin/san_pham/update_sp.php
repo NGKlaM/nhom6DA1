@@ -4,14 +4,8 @@
     }
 ?>
 <form method="POST" enctype="multipart/form-data" action="index.php?action=updateproduct">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Sửa Sản Phẩm</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+    <div class="" role="document">
+        <div class="">
             <div class="modal-body">
                 <input type="hidden" value="<?=$product_id?>" name="id_pro">
                 <div class="form-group">

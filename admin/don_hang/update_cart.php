@@ -1,10 +1,10 @@
-<div class="container-fluid">
+<div class="-fluid">
     <?php
     if (is_array($cart)) {
         extract($cart);
     }
     ?>
-    <div class="card shadow mb-4">
+    <div class=" shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Cập nhật hóa đơn</h6>
         </div>
@@ -49,6 +49,7 @@
                             <option value="2" <?= $role == 2 ? "selected" : "" ?>>Đang giao hàng</option>
                             <option value="3" <?= $role == 3 ? "selected" : "" ?>>Đã giao hàng</option>
                             <option value="4" <?= $role == 4 ? "selected" : "" ?>>Đã hủy</option>
+                            <option value="5" <?= $role == 5 ? "selected" : "" ?>>Yêu cầu hủy</option>
 
                         </select>
                     </div>
@@ -75,7 +76,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
+                        <?php
                         $cart_detail = get_cartdetail_by_code($code);
                         // var_dump($bill);
                         foreach ($cart_detail as $product) {
@@ -84,9 +85,9 @@
                             <tr>
                                 <td class="jb-product-thumbnail"><img src="../public/img/product/<?= getProductId($product_id)['image'] ?>" alt="Ultraphone Product" width="80px"></img></td>
                                 <td class="jb-product-name"><a href=""><?= getProductId($product_id)['product_name'] ?></a></td>
-                                <td class="jb-product-price"><span class="amount"><?= number_format(getProductId($product_id)['price'])?> ₫</span></td>
+                                <td class="jb-product-price"><span class="amount"><?= number_format(getProductId($product_id)['price']) ?> ₫</span></td>
                                 <td class="quantity"><?= $quantity ?></td>
-                                <td class="product-subtotal"><span class="amount"><?=number_format($total_price) ?>₫</span></td>
+                                <td class="product-subtotal"><span class="amount"><?= number_format($total_price) ?>₫</span></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -95,4 +96,4 @@
         </div>
     </div>
 </div>
-    <!-- /.container-fluid -->
+<!-- /.container-fluid -->

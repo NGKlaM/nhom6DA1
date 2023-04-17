@@ -24,6 +24,31 @@
                         echo '<script>alert("Tài khoản sai hoặc không tồn tại!"); window.location="login.php";</script>';
                     }
                 }
+                
+                break;
+            case 'fgpass':
+                if(isset($_POST['btn_forgot_pass'])){
+                    $user = $_POST['user_name'];
+                    $pass1 = $_POST['pass1'];
+                    $pass2 = $_POST['pass2'];
+                    $check_user = get_user_by_user($user);
+                    if(!empty($check_user)){   
+                        if($pass1 != $pass2){
+                            echo '<script>alert("Nhập mật khẩu không chính xác"); window.location="login.php";</script>';
+                        }
+                        else{
+                            try {
+                                user_forgot_pass($pass2,$user);
+                                echo '<script>alert("Đổi mật khẩu thành công! vui lòng đăng nhập"); window.location="login.php";</script>';   
+                            } catch (\Throwable $th) {
+                                echo '<script>alert("Đổi mật khẩu thất bại"); window.location="login.php";</script>';
+                            }
+                        }
+                    }else{
+                        echo '<script>alert("Tài khoản không tồn tại"); window.location="login.php";</script>';
+                    }
+                    
+                }
                 break;
             case 'logout':
                 session_destroy();
@@ -37,16 +62,42 @@
                     $pass1 = $_POST['pass1'];
                     $pass2 = $_POST['pass2'];
                     $img = 'user.png';
-                    if($pass1 == $pass2){
-                        register($user_name,$img,$email,$phone,$pass2);
-                        echo '<script>alert("Đăng kí thành công! Đến trang đăng nhập");window.location="login.php";</script>';    
-                    }
-                    else{
-                        echo '<script>alert("Mật khẩu không trùng khớp"); window.location="register.php";</script>';
+                    if(user_check($user_name) == 1){
+                        echo '<script>alert("Tên đăng nhập đã tồn tại"); window.location="register.php";</script>';
+                    }else{
+                        if($pass1 == $pass2){
+                            register($user_name,$img,$email,$phone,$pass2);
+                            echo '<script>alert("Đăng kí thành công! Đến trang đăng nhập");window.location="login.php";</script>';    
+                        }
+                        else{
+                            echo '<script>alert("Mật khẩu không trùng khớp"); window.location="register.php";</script>';
+                        }
                     }
                 }
                 break;
-            
+            case 'myacc':
+                if(isset($_POST['btn_update_user'])){
+                    $user_name = $_POST['user_name'];
+                    $email = $_POST['email'];
+                    if ($_FILES['img']['size'] == 0) {
+                        $img = $_SESSION['user']['image'];
+                    } else {
+                        $img = $_FILES['img']['name'];
+                        move_uploaded_file($_FILES['img']['tmp_name'], '../public/img/user/' . $img);
+                    }
+                    $phone = $_POST['phone'];
+                    $add = $_POST['add'];
+                    $role = $_SESSION['user']['role'];
+                    $pass = $_SESSION['user']['password'];
+                    try {
+                        user_update($user_name,$img,$email,$phone,$add,$pass,$role,$_SESSION['user']['user_id']);
+                        $_SESSION['user'] = get_user_by_id($_SESSION['user']['user_id']);
+                        echo '<script>alert("Cập nhật thành công");window.location="index.php";</script>';    
+                    } catch (\Throwable $th) {
+                        echo '<script>alert("Lỗi");</script>';   
+                    }
+                }
+                break;
             case 'addgiohang':
                 if(!isset($_SESSION['user'])){
                     echo '<script>alert("Đăng nhập để tiếp tục");window.location="login.php";</script>';    
@@ -60,8 +111,12 @@
                         $quantity = isset($_POST['quantity'])?$_POST['quantity']:'1';
                         $date = date('Y-d-m');
                         if(isset($_SESSION['cart'][$product_id])){
+                            if(($_SESSION['cart'][$product_id]['quantity']+$quantity)>3){
+                            }
+                            else{
                             $_SESSION['cart'][$product_id]['quantity'] +=$quantity;
                             $_SESSION['cart'][$product_id]['total_price'] = $_SESSION['cart'][$product_id]['price'] * $_SESSION['cart'][$product_id]['quantity'];
+                            }
                         }
                         else{
                             $product = getProductId($product_id);
@@ -83,19 +138,28 @@
             case 'cong_cart':
                 if(isset($_GET['id_pro'])){
                     $id_product=$_GET['id_pro'];
-                    if(!empty($_SESSION['cart'][$id_product]['quantity'])){
+                    if(isset($_SESSION['cart'][$id_product])){
+                        
+                        if($_SESSION['cart'][$id_product]['quantity'] < 3 ){
                         $_SESSION['cart'][$id_product]['quantity']+=1;
                         $_SESSION['cart'][$id_product]['total_price'] = $_SESSION['cart'][$id_product]['quantity'] * $_SESSION['cart'][$id_product]['price'];
+                        }
                         header('location: index.php?action=giohang');
                     }
+                    
                 }
                 break;
             case 'tru_cart':
                 if (isset($_GET['id_pro'])) {
                     $id_product = $_GET['id_pro'];
-                    if (!empty($_SESSION['cart'][$id_product]['quantity'])) {
+                    if (isset($_SESSION['cart'][$id_product])) {
+                        if($_SESSION['cart'][$id_product]['quantity'] <= 3 && $_SESSION['cart'][$id_product]['quantity'] >= 0){
                         $_SESSION['cart'][$id_product]['quantity'] -= 1;
                         $_SESSION['cart'][$id_product]['total_price'] = $_SESSION['cart'][$id_product]['quantity'] * $_SESSION['cart'][$id_product]['price'];
+                        }
+                        if($_SESSION['cart'][$id_product]['quantity'] == 0){
+                            unset($_SESSION['cart'][$id_product]);
+                        }
                         header('location: index.php?action=giohang');
                     }
                 }
@@ -131,6 +195,7 @@
                     cart_insert($code,$phone,$add,$id_user,$tong_tien,$note,$date,$payment);
                     foreach($_SESSION['cart'] as $product_id => $product){
                         extract($product);
+                        product_update_quantity($quantity,$product_id);
                         createCartDetail($product_id,$code,$quantity,$total_price);
                     }
                     unset($_SESSION['cart']);
@@ -141,6 +206,13 @@
                 break;
             case 'history':
                 include_once '../users/history.php';
+                break;
+            case 'huydon':
+                if(isset($_GET['id_cart'])){
+                    $role = 5;
+                    update_cart($role,$_GET['id_cart']);
+                    header('location: index.php?action=history');
+                }
                 break;
             case 'lienhe':
                 include_once '../users/lienhe.php';
@@ -163,7 +235,26 @@
                     $product = getProductId($_GET['id_product']);
                     product_update_view($_GET['id_product']);
                 }
+                 
                 renderUS('sanpham/sanphamct',['product'=>$product]);
+                break;
+            case 'comment':
+                if (isset($_SESSION['user'])) {
+                    if (isset($_POST['btn_gui'])) {
+                        $noi_dung = $_POST['note'];
+                        $ngay_bl = date_format(date_create(), "Y/m/d");
+                        $ma_kh = $_SESSION['user']['user_id'];
+                        $ma_hh = $_POST['id_product'];
+                        try {
+                            comment_insert($noi_dung, $ngay_bl, $ma_hh, $ma_kh);
+                            header('location: index.php?action=chitietsp&id_product='.$ma_hh) ;
+                        } catch (\Throwable $th) {
+                            echo '<script>alert("haxx");</script>';    
+                        }
+                    }
+                } else {
+                    echo '<script>alert("Đăng nhập để tiếp tục");window.location="login.php";</script>';    
+                }
                 break;
             case 'gioithieu':
                 include_once '../users/gioithieu.php';

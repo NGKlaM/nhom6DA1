@@ -4,8 +4,8 @@ if (isset($user) && is_array($user)) {
 }
 ?>
 <form method="POST" enctype="multipart/form-data" action="index.php?action=update_user">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <div class="" role="document">
+        <div class="">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Sửa Thông Tin User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">

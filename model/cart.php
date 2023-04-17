@@ -7,11 +7,11 @@ function cart_insert($code,$phone,$add,$user_id,$price_all,$note,$date_time,$pay
     pdo_execute($sql, $code,$phone,$add, $user_id, $price_all, $note, $date_time, $payment);
 }
 function get_all_cart(){
-    $sql = "select * from cart";
+    $sql = "select * from cart order by date_time desc";
     return pdo_query($sql);
 }
 function get_bill_by_user($user_id){
-    $sql = "select * from cart where user_id = ?";
+    $sql = "select * from cart where user_id = ? order by date_time desc";
     return pdo_query($sql,$user_id);
 }
 function get_cartdetail_by_code($code){
@@ -42,4 +42,5 @@ function updateCartDetail($cart_detail_id,$quantity){
     $sql = "update cart_detail set quantity= ? where cart_detail_id = ?";
     pdo_execute($sql,$quantity,$cart_detail_id);
 }
+
 ?>

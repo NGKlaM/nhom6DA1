@@ -49,7 +49,7 @@
                                          <div class="media">
 
                                              <div class="d-flex">
-                                                 <img src="../public/img/product/<?= $image ?>" alt="" style="width: 145px;height:100px;" />
+                                                 <img src="../public/img/product/<?= $image ?>" alt="" style="width: 100px;" />
                                              </div>
                                              <div class="media-body">
                                                  <p><?= $product_name ?></p>

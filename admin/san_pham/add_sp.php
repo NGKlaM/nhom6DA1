@@ -3,8 +3,8 @@
 
 
 <form method="POST" enctype="multipart/form-data">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <div class="" role="document">
+        <div class="">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Thêm Mới Sản Phẩm</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -15,19 +15,20 @@
 
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Tên sản phẩm:</label>
-                    <input type="text" class="form-control" id="recipient-name" name="pro_name">
+                    <input type="text" class="form-control" id="recipient-name" name="pro_name" required>
                 </div>
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Ảnh:</label>
-                    <input type="file" class="form-control" id="recipient-name" name="img">
+                    <input type="file" class="form-control" id="recipient-name" name="img" required>
                 </div>
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Giá tiền:</label>
-                    <input type="text" class="form-control" id="recipient-name" name="price">
+                    <input type="text" class="form-control" id="recipient-name" name="price" required>
                 </div>
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Loại:</label>
-                    <select name="brand" id="" class="form-control">
+                    <select name="brand" id="" class="form-control" required>
+                        <option value="">---Chọn---</option>
                         <?php
                         foreach (getAllbrands() as $brand) {
                             extract($brand) ?>
@@ -38,15 +39,15 @@
                 </div>
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Mô tả</label>
-                    <input type="text" class="form-control" id="recipient-name" name="des">
+                    <input type="text" class="form-control" id="recipient-name" name="des" required>
                 </div>
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Chi tiết</label>
-                    <input type="text" class="form-control" id="recipient-name" name="detail">
+                    <input type="text" class="form-control" id="recipient-name" name="detail" required>
                 </div>
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Số lượng</label>
-                    <input type="text" class="form-control" id="recipient-name" name="quantity">
+                    <input type="text" class="form-control" id="recipient-name" name="quantity" required>
                 </div>
 
             </div>

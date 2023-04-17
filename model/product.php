@@ -2,7 +2,7 @@
     include_once 'pdo.php';
     function getAllproduct()
     {
-        $sql = 'select*from product';
+        $sql = 'select*from product where status = 0';
         return pdo_query($sql);
     }
     function getProductId($id)
@@ -15,17 +15,21 @@
         return pdo_query($sql,$id_brand);
     }
     function get8productnew(){
-        $sql = 'SELECT * FROM product ORDER BY create_date DESC LIMIT 8';
+        $sql = 'select * from product where status = 0 ORDER BY create_date DESC LIMIT 8';
         return pdo_query($sql);
     }
     function get_3_hot_view(){
-        $sql = 'select * from product where view > 0 order by view desc limit 3';
+        $sql = 'select * from product where status = 0 and view > 0 order by view desc limit 3';
         return pdo_query($sql);
     }
     function product_update_view($ma_hh)
     {
         $sql = "update product set view = view + 1 where product_id = ?";
         pdo_execute($sql, $ma_hh);
+    }
+    function product_update_quantity($quantity,$product_id){
+        $sql = "update product set quantity = quantity - ? where product_id = ?";
+        pdo_execute($sql,$quantity,$product_id);
     }
     function create_product($product_name,$image,$desc,$detail,$create_date,$quantity,$price,$brand_id)
     {
@@ -35,6 +39,10 @@
     function update_product($product_name,$image,$desc,$detail,$update_date,$quantity,$price,$brand_id,$product_id){
         $sql = "update product set product_name = ? , image = ? , description = ? , detail = ? , update_date = ? , quantity = ? , price = ?, brand_id = ? where product_id = ?";
         pdo_execute($sql, $product_name, $image, $desc, $detail, $update_date, $quantity, $price, $brand_id,$product_id);
+    }
+    function hide_product_by_id($id_product){
+        $sql = "update product set status = 1 where product_id = ?";
+        pdo_execute($sql,$id_product);
     }
     function delete_product($ma_loai)
     {

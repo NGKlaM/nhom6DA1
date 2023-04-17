@@ -69,7 +69,7 @@
                 break;
             case 'deleteproduct';
                 if (isset($_GET['id_pro']) && $_GET['id_pro']) {
-                    delete_product($_GET['id_pro']);
+                    hide_product_by_id($_GET['id_pro']);
                     echo "<script>alert('Đã xóa thành công!');window.location='index.php?action=sanpham'</script>";
                 }
                 break;
@@ -184,7 +184,16 @@
                 renderAD('binh_luan/list',['list_cmt'=>$cmt]);
                 break;
             case 'detail_comment';
-
+                if(isset($_GET['id_product'])){
+                    $list_cm_pro = comment_select_by_product($_GET['id_product']);
+                    renderAD('binh_luan/detail',['list_cm'=>$list_cm_pro]);
+                }
+                break;
+            case 'deleteBL':
+                if(isset($_GET['id_comment'])){
+                    comment_delete_by_comment_id($_GET['id_comment']);
+                    header('location: index.php?action=comment');
+                }
                 break;
             case 'donhang':
                 $cart = get_all_cart();

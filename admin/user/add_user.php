@@ -1,7 +1,7 @@
 
 <form method="POST" enctype="multipart/form-data" action="index.php?action=add_user">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <div class="" role="document">
+        <div class="">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Thêm quản trị viên</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">

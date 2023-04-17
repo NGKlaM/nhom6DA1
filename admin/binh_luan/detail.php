@@ -13,36 +13,39 @@
             </ul>
         </div>
     </div>
-
+<?php
+    if(isset($list_cm)){
+        $stt =0;
+    }
+?>
     <div class="table-data">
         <div class="order">
             <div class="head">
-                <h3>Danh sách bình luận</h3>
+                <h3>Tên sản phẩm: <?= getProductId($_GET['id_product'])['product_name'] ?></h3>
             </div>
             <table>
                 <thead>
                     <tr>
                         <th>STT</th>
-                        <th>Tên Sản Phẩm</th>
-                        <th>Số lượng</th>
-                        <th>Mới nhất</th>
-                        <th>Cũ nhất</th>
+                        <th>Nội dung</th>
+                        <th>Ngày BL</th>
+                        <th>Người BL</th>
                         <th>Chức năng</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($list_cmt as $cmt) {
+                    foreach ($list_cm as $cmt) {
                         extract($cmt);
+                        $stt +=1;
                     ?>
                         <tr>
-                            <td>1</td>
-                            <td><?= $product_id ?></td>
-                            <td><?= $so_luong ?></td>
-                            <td><?= $moi_nhat ?></td>
-                            <td><?= $cu_nhat ?></td>
+                            <td><?= $stt ?></td>
+                            <td><?= $note ?></td>
+                            <td><?= $datetime ?></td>
+                            <td><?= get_user_by_id($user_id)['user_name'] ?></td>
                             <td>
-                                <a href="" class="btn btn-primary status pending">Xóa</a>
+                                <a href="index.php?action=deleteBL&id_comment=<?=$comment_id?>" class="btn btn-primary status pending">Xóa</a>
                             </td>
                         </tr>
                     <?php

@@ -12,5 +12,21 @@
                     from comment bl join product hh on hh.product_id=bl.product_id group by hh.product_id, hh.product_name having so_luong>0";
         return pdo_query($sql);
     }
+    function so_luong_hang(){
+        $sql = "select count(*) from product";
+        return pdo_query_value($sql);
+    }
+    function so_luong_user(){
+        $sql = "select count(*) from user";
+        return pdo_query_value($sql);
+    }
+    function so_luong_don_hang(){
+        $sql = "select count(*) from cart";
+        return pdo_query_value($sql);
+    }
+    function tong_doanh_thu(){
+        $sql = "select sum(price_all) as tong from cart";
+        return pdo_query_value($sql);
+    }
 
 ?>

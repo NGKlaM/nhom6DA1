@@ -23,7 +23,6 @@
             <table>
                 <thead>
                     <tr>
-                        <th>STT</th>
                         <th>Tên Sản Phẩm</th>
                         <th>Số lượng</th>
                         <th>Mới nhất</th>
@@ -37,13 +36,12 @@
                             extract($cmt);
                     ?>
                     <tr>
-                        <td>1</td>
-                        <td><?=$product_id?></td>
+                        <td><?=$product_name?></td>
                         <td><?=$so_luong?></td>
                         <td><?=$moi_nhat?></td>
                         <td><?=$cu_nhat?></td>
                         <td>
-                            <a href="" class="btn btn-primary status pending">Xóa</a>
+                            <a href="index.php?action=detail_comment&id_product=<?=$product_id?>" class="btn btn-primary status pending">Chi tiết</a>
                         </td>
                     </tr>
                     <?php
